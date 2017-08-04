@@ -5,7 +5,7 @@ INCLUDES = -I ../Navio2/C++/
 CFLAGS = -std=gnu++11
 
 all:
-	$(CXX) $(CFLAGS) $(INCLUDES) $(NAVIO)/gpio.cpp $(NAVIO)/RGBled.cpp $(NAVIO)/PWM.cpp $(NAVIO)/Util.cpp main.cpp -o skyshark
+	$(CXX) $(CFLAGS) $(INCLUDES) $(NAVIO)/gpio.cpp $(NAVIO)/RGBled.cpp $(NAVIO)/PWM.cpp $(NAVIO)/RCInput.cpp $(NAVIO)/Util.cpp main.cpp -o skyshark
 
 clean:
 	rm -f skyshark

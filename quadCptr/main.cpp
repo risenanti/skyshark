@@ -1,6 +1,7 @@
 #include <unistd.h>
 #include "Navio/RGBled.h"
 #include "Navio/PWM.h"
+#include "Navio/RCInput.h"
 #include "Navio/Util.h"
 #include <stdio.h>
 
@@ -16,6 +17,7 @@ int main()
 {
 	RGBled led;
 	PWM pwm;
+	RCInput rcin;
 
 	if(check_apm()) { return 1;}
 
@@ -25,6 +27,8 @@ int main()
 		fprintf(stderr,"OUTPUT ENABLE NOT SET. Are you root?\n");
 		return 0;
 	}
+
+	rcin.init();
 
 	led.setColor(Colors::Yellow);
 	pwm.enable(MOTOR1);
@@ -41,21 +45,15 @@ int main()
 
 	while(true)
 	{
-		pwm.set_duty_cycle(MOTOR1, SERVO_MAX);
-		pwm.set_duty_cycle(MOTOR2, SERVO_MAX);
-		pwm.set_duty_cycle(MOTOR3, SERVO_MAX);
-		pwm.set_duty_cycle(MOTOR4, SERVO_MAX);
-		led.setColor(Colors::Red);
-		printf("Servo HIGH\n");
-		sleep(1);
 
-		pwm.set_duty_cycle(MOTOR1,SERVO_MIN);
-		pwm.set_duty_cycle(MOTOR2,SERVO_MIN);
-		pwm.set_duty_cycle(MOTOR3,SERVO_MIN);
-		pwm.set_duty_cycle(MOTOR4,SERVO_MIN);
-		led.setColor(Colors::Blue);
-		printf("Servo LOW\n");
-		sleep(1);
+		int rawInput = rcin.read(0);
+		float dutyCycle =(float)rawInput/1000;
+		pwm.set_duty_cycle(MOTOR1, dutyCycle);
+		pwm.set_duty_cycle(MOTOR2, dutyCycle);
+		pwm.set_duty_cycle(MOTOR3, dutyCycle);
+		pwm.set_duty_cycle(MOTOR4,dutyCycle);
+		led.setColor(Colors::Red);
+		//printf("Hellow");
 	}
 	return 1;
 }
