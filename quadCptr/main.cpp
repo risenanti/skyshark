@@ -26,21 +26,30 @@ int main()
 	pwm.enable(PWM_OUTPUT);
 	pwm.set_period(PWM_OUTPUT,50);
 	
+	printf("Enable PWM\n");
+	pwm.set_duty_cycle(PWM_OUTPUT,SERVO_MIN);
+	sleep(15);
+	pwm.set_duty_cycle(PWM_OUTPUT,SERVO_MAX);
+	sleep(10);
 	int i = 5;
 
-	while(i!=0)
-	{
-		pwm.set_duty_cycle(PWM_OUTPUT, SERVO_MAX);
-		led.setColor(Colors::Red);
-		printf("Servo HIGH\n");
-		sleep(10);
-		
-		pwm.set_duty_cycle(PWM_OUTPUT,SERVO_MIN);
-		led.setColor(Colors::Blue);
-		printf("Servo LOW\n");
-		sleep(10);
-		i--;
-	}
-	printf("HELLO WORLD\n");
+	//while(i!=0)
+	//{
+		//pwm.set_duty_cycle(PWM_OUTPUT, SERVO_MAX);
+	//	led.setColor(Colors::Red);
+	//	printf("Servo HIGH\n");
+		//sleep(10);
+
+		//pwm.set_duty_cycle(PWM_OUTPUT,SERVO_MIN);
+	//	led.setColor(Colors::Blue);
+	//	printf("Servo LOW\n");
+		//sleep(10);
+	//	i--;
+	//}
+
+	pwm.set_duty_cycle(PWM_OUTPUT,0.000);
+	pwm.set_period(PWM_OUTPUT,0);
+	sleep(30);
+	printf("GOODBYE!\n");
 	return 1;
 }
