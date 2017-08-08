@@ -1,0 +1,4 @@
+/home/keithconley/Documents/github/skyshark/quadCptr/build/CMakeFiles/rebuild_cache.dir
+/home/keithconley/Documents/github/skyshark/quadCptr/build/CMakeFiles/skyshark.dir
+/home/keithconley/Documents/github/skyshark/quadCptr/build/CMakeFiles/edit_cache.dir
+/home/keithconley/Documents/github/skyshark/quadCptr/build/CMakeFiles/NAV.dir
