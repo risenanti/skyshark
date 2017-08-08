@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/keithconley/Documents/github/skyshark/quadCptr/rcinput/rcinput.cpp" "/home/keithconley/Documents/github/skyshark/quadCptr/rcinput/build/CMakeFiles/rcInput.dir/rcinput.cpp.o"
+  "/home/pi/skyshark/quadCptr/rcinput/rcinput.cpp" "/home/pi/skyshark/quadCptr/rcinput/build/CMakeFiles/rcInput.dir/rcinput.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
@@ -15,7 +15,7 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
-  "/home/keithconley/Documents/github/skyshark/quadCptr/rcinput/build/CMakeFiles/NAV.dir/DependInfo.cmake"
+  "/home/pi/skyshark/quadCptr/rcinput/build/CMakeFiles/NAV.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.

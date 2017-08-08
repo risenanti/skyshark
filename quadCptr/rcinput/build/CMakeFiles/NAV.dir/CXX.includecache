@@ -6,13 +6,13 @@
 
 #IncludeRegexTransform: 
 
-/home/keithconley/Documents/github/skyshark/Navio2/C++/Navio/PWM.cpp
+/home/pi/skyshark/Navio2/C++/Navio/PWM.cpp
 PWM.h
-/home/keithconley/Documents/github/skyshark/Navio2/C++/Navio/PWM.h
+/home/pi/skyshark/Navio2/C++/Navio/PWM.h
 Util.h
-/home/keithconley/Documents/github/skyshark/Navio2/C++/Navio/Util.h
+/home/pi/skyshark/Navio2/C++/Navio/Util.h
 
-/home/keithconley/Documents/github/skyshark/Navio2/C++/Navio/PWM.h
+/home/pi/skyshark/Navio2/C++/Navio/PWM.h
 stdio.h
 -
 string.h
@@ -22,7 +22,7 @@ stdarg.h
 errno.h
 -
 
-/home/keithconley/Documents/github/skyshark/Navio2/C++/Navio/RCInput.cpp
+/home/pi/skyshark/Navio2/C++/Navio/RCInput.cpp
 cstdio
 -
 unistd.h
@@ -34,19 +34,19 @@ cstdlib
 err.h
 -
 RCInput.h
-/home/keithconley/Documents/github/skyshark/Navio2/C++/Navio/RCInput.h
+/home/pi/skyshark/Navio2/C++/Navio/RCInput.h
 Util.h
-/home/keithconley/Documents/github/skyshark/Navio2/C++/Navio/Util.h
+/home/pi/skyshark/Navio2/C++/Navio/Util.h
 
-/home/keithconley/Documents/github/skyshark/Navio2/C++/Navio/RCInput.h
+/home/pi/skyshark/Navio2/C++/Navio/RCInput.h
 cstddef
 -
 
-/home/keithconley/Documents/github/skyshark/Navio2/C++/Navio/RGBled.cpp
+/home/pi/skyshark/Navio2/C++/Navio/RGBled.cpp
 RGBled.h
-/home/keithconley/Documents/github/skyshark/Navio2/C++/Navio/RGBled.h
+/home/pi/skyshark/Navio2/C++/Navio/RGBled.h
 
-/home/keithconley/Documents/github/skyshark/Navio2/C++/Navio/RGBled.h
+/home/pi/skyshark/Navio2/C++/Navio/RGBled.h
 stdio.h
 -
 stdlib.h
@@ -56,9 +56,9 @@ unistd.h
 cstdint
 -
 gpio.h
-/home/keithconley/Documents/github/skyshark/Navio2/C++/Navio/gpio.h
+/home/pi/skyshark/Navio2/C++/Navio/gpio.h
 
-/home/keithconley/Documents/github/skyshark/Navio2/C++/Navio/Util.cpp
+/home/pi/skyshark/Navio2/C++/Navio/Util.cpp
 cstdio
 -
 stdarg.h
@@ -72,11 +72,11 @@ fcntl.h
 unistd.h
 -
 Util.h
-/home/keithconley/Documents/github/skyshark/Navio2/C++/Navio/Util.h
+/home/pi/skyshark/Navio2/C++/Navio/Util.h
 
-/home/keithconley/Documents/github/skyshark/Navio2/C++/Navio/Util.h
+/home/pi/skyshark/Navio2/C++/Navio/Util.h
 
-/home/keithconley/Documents/github/skyshark/Navio2/C++/Navio/gpio.cpp
+/home/pi/skyshark/Navio2/C++/Navio/gpio.cpp
 unistd.h
 -
 fcntl.h
@@ -98,9 +98,9 @@ cstdlib
 cstring
 -
 gpio.h
-/home/keithconley/Documents/github/skyshark/Navio2/C++/Navio/gpio.h
+/home/pi/skyshark/Navio2/C++/Navio/gpio.h
 
-/home/keithconley/Documents/github/skyshark/Navio2/C++/Navio/gpio.h
+/home/pi/skyshark/Navio2/C++/Navio/gpio.h
 stdint.h
 -
 

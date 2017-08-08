@@ -12,13 +12,13 @@ cstddef
 
 ../../../Navio2/C++/Navio/Util.h
 
-/home/keithconley/Documents/github/skyshark/quadCptr/rcinput/rcinput.cpp
+/home/pi/skyshark/quadCptr/rcinput/rcinput.cpp
 unistd.h
 -
 Navio/RCInput.h
-/home/keithconley/Documents/github/skyshark/quadCptr/rcinput/Navio/RCInput.h
+/home/pi/skyshark/quadCptr/rcinput/Navio/RCInput.h
 Navio/Util.h
-/home/keithconley/Documents/github/skyshark/quadCptr/rcinput/Navio/Util.h
+/home/pi/skyshark/quadCptr/rcinput/Navio/Util.h
 stdio.h
-/home/keithconley/Documents/github/skyshark/quadCptr/rcinput/stdio.h
+/home/pi/skyshark/quadCptr/rcinput/stdio.h
 

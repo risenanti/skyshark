@@ -4,11 +4,11 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/keithconley/Documents/github/skyshark/Navio2/C++/Navio/PWM.cpp" "/home/keithconley/Documents/github/skyshark/quadCptr/rcinput/build/CMakeFiles/NAV.dir/home/keithconley/Documents/github/skyshark/Navio2/C++/Navio/PWM.cpp.o"
-  "/home/keithconley/Documents/github/skyshark/Navio2/C++/Navio/RCInput.cpp" "/home/keithconley/Documents/github/skyshark/quadCptr/rcinput/build/CMakeFiles/NAV.dir/home/keithconley/Documents/github/skyshark/Navio2/C++/Navio/RCInput.cpp.o"
-  "/home/keithconley/Documents/github/skyshark/Navio2/C++/Navio/RGBled.cpp" "/home/keithconley/Documents/github/skyshark/quadCptr/rcinput/build/CMakeFiles/NAV.dir/home/keithconley/Documents/github/skyshark/Navio2/C++/Navio/RGBled.cpp.o"
-  "/home/keithconley/Documents/github/skyshark/Navio2/C++/Navio/Util.cpp" "/home/keithconley/Documents/github/skyshark/quadCptr/rcinput/build/CMakeFiles/NAV.dir/home/keithconley/Documents/github/skyshark/Navio2/C++/Navio/Util.cpp.o"
-  "/home/keithconley/Documents/github/skyshark/Navio2/C++/Navio/gpio.cpp" "/home/keithconley/Documents/github/skyshark/quadCptr/rcinput/build/CMakeFiles/NAV.dir/home/keithconley/Documents/github/skyshark/Navio2/C++/Navio/gpio.cpp.o"
+  "/home/pi/skyshark/Navio2/C++/Navio/PWM.cpp" "/home/pi/skyshark/quadCptr/rcinput/build/CMakeFiles/NAV.dir/home/pi/skyshark/Navio2/C++/Navio/PWM.cpp.o"
+  "/home/pi/skyshark/Navio2/C++/Navio/RCInput.cpp" "/home/pi/skyshark/quadCptr/rcinput/build/CMakeFiles/NAV.dir/home/pi/skyshark/Navio2/C++/Navio/RCInput.cpp.o"
+  "/home/pi/skyshark/Navio2/C++/Navio/RGBled.cpp" "/home/pi/skyshark/quadCptr/rcinput/build/CMakeFiles/NAV.dir/home/pi/skyshark/Navio2/C++/Navio/RGBled.cpp.o"
+  "/home/pi/skyshark/Navio2/C++/Navio/Util.cpp" "/home/pi/skyshark/quadCptr/rcinput/build/CMakeFiles/NAV.dir/home/pi/skyshark/Navio2/C++/Navio/Util.cpp.o"
+  "/home/pi/skyshark/Navio2/C++/Navio/gpio.cpp" "/home/pi/skyshark/quadCptr/rcinput/build/CMakeFiles/NAV.dir/home/pi/skyshark/Navio2/C++/Navio/gpio.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
