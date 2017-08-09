@@ -52,14 +52,14 @@ float processCH1(float ch1)
 	float dutyCycle1;
 	if(ch1 > 1.55)
 	{
-	dutyCycle1 = ch1, 1.5, 2, 0, 0.3;
+	dutyCycle1 = mapRanges(ch1, 1.5, 2, 0, 0.3);
 	printf("\nrc1: = %f R \n", dutyCycle1);
 	return dutyCycle1;
 	}
 	if(ch1 < 1.45) 
 	{
 	ch1 = 2.5-ch1;
-	dutyCycle1 = ch1, 1.0, 1.5, 0, 0.3;
+	dutyCycle1 = mapRanges(ch1, 1.0, 1.5, 0, 0.3);
 	printf("\nrc1: = %f L \n", dutyCycle1);
 	return dutyCycle1;
 	}
