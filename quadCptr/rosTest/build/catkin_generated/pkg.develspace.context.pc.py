@@ -3,6 +3,6 @@ CATKIN_PACKAGE_PREFIX = ""
 PROJECT_PKG_CONFIG_INCLUDE_DIRS = "".split(';') if "" != "" else []
 PROJECT_CATKIN_DEPENDS = "".replace(';', ' ')
 PKG_CONFIG_LIBRARIES_WITH_PREFIX = "".split(';') if "" != "" else []
-PROJECT_NAME = "beginner"
-PROJECT_SPACE_DIR = "/home/pi/skyshark/quadCptr/rosTest/build/devel"
+PROJECT_NAME = "rcSender"
+PROJECT_SPACE_DIR = "/home/keithconley/GITHUB/skyshark/quadCptr/rosTest/build/devel"
 PROJECT_VERSION = "0.0.0"

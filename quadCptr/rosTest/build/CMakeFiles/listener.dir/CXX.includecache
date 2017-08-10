@@ -6,11 +6,11 @@
 
 #IncludeRegexTransform: 
 
-/home/pi/skyshark/quadCptr/rosTest/src/listener.cpp
+/home/keithconley/GITHUB/skyshark/quadCptr/rosTest/src/listener.cpp
 ros/ros.h
-/home/pi/skyshark/quadCptr/rosTest/src/ros/ros.h
+/home/keithconley/GITHUB/skyshark/quadCptr/rosTest/src/ros/ros.h
 std_msgs/String.h
-/home/pi/skyshark/quadCptr/rosTest/src/std_msgs/String.h
+/home/keithconley/GITHUB/skyshark/quadCptr/rosTest/src/std_msgs/String.h
 
 /opt/ros/kinetic/include/ros/advertise_options.h
 ros/forwards.h

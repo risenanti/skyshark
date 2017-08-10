@@ -4,14 +4,14 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/pi/skyshark/quadCptr/rosTest/src/listener.cpp" "/home/pi/skyshark/quadCptr/rosTest/build/CMakeFiles/listener.dir/src/listener.cpp.o"
+  "/home/keithconley/GITHUB/skyshark/quadCptr/rosTest/src/listener.cpp" "/home/keithconley/GITHUB/skyshark/quadCptr/rosTest/build/CMakeFiles/listener.dir/src/listener.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
 # Preprocessor definitions for this target.
 set(CMAKE_TARGET_DEFINITIONS_CXX
   "ROSCONSOLE_BACKEND_LOG4CXX"
-  "ROS_PACKAGE_NAME=\"beginner\""
+  "ROS_PACKAGE_NAME=\"rcSender\""
   )
 
 # The include file search paths:

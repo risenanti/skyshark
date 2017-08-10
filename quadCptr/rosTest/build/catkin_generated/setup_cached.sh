@@ -7,6 +7,6 @@
 # new environment variables
 
 # modified environment variables
-export CMAKE_PREFIX_PATH="/home/pi/skyshark/quadCptr/rosTest/build/devel:$CMAKE_PREFIX_PATH"
-export ROSLISP_PACKAGE_DIRECTORIES="/home/pi/skyshark/quadCptr/rosTest/build/devel/share/common-lisp"
-export ROS_PACKAGE_PATH="/home/pi/skyshark/quadCptr/rosTest:$ROS_PACKAGE_PATH"
+export CMAKE_PREFIX_PATH="/home/keithconley/GITHUB/skyshark/quadCptr/rosTest/build/devel:$CMAKE_PREFIX_PATH"
+export ROSLISP_PACKAGE_DIRECTORIES="/home/keithconley/GITHUB/skyshark/quadCptr/rosTest/build/devel/share/common-lisp"
+export ROS_PACKAGE_PATH="/home/keithconley/GITHUB/skyshark/quadCptr/rosTest:$ROS_PACKAGE_PATH"
