@@ -1,1 +1,0 @@
-/usr/bin/c++      CMakeFiles/rcInput.dir/rcinput.cpp.o  -o rcInput -rdynamic libNAV.a 

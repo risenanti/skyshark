@@ -1,8 +1,0 @@
-prefix=/home/keithconley/GITHUB/skyshark/quadCptr/rosTest/build/devel
-
-Name: rcSender
-Description: Description of rcSender
-Version: 0.0.0
-Cflags: 
-Libs: -L/home/keithconley/GITHUB/skyshark/quadCptr/rosTest/build/devel/lib 
-Requires: 

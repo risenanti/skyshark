@@ -1,2 +1,0 @@
-/usr/bin/ar qc libNAV.a  CMakeFiles/NAV.dir/home/pi/skyshark/Navio2/C++/Navio/RCInput.cpp.o CMakeFiles/NAV.dir/home/pi/skyshark/Navio2/C++/Navio/Util.cpp.o CMakeFiles/NAV.dir/home/pi/skyshark/Navio2/C++/Navio/RGBled.cpp.o CMakeFiles/NAV.dir/home/pi/skyshark/Navio2/C++/Navio/PWM.cpp.o CMakeFiles/NAV.dir/home/pi/skyshark/Navio2/C++/Navio/gpio.cpp.o
-/usr/bin/ranlib libNAV.a

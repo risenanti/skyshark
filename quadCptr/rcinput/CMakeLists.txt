@@ -1,17 +1,22 @@
-# Declare the version of the CMake API for forward-compatibility
-cmake_minimum_required(VERSION 2.8)
+# %Tag(FULLTEXT)%
+cmake_minimum_required(VERSION 2.8.3)
 
 set (CMAKE_CXX_STANDARD 11)
 
-project(rcInput)
+project(rcSender)
 
-# Local header files here ONLY
-#SET(TARGET_H
-#    ${CMAKE_SOURCE_DIR}/../Navio2/C++/Navio/RCInput.h
-#    ${CMAKE_SOURCE_DIR}/../Navio2/C++/Navio/Util.h
-#    ${CMAKE_SOURCE_DIR}/../Navio2/C++/Navio/RGBled.h   
-#    ${CMAKE_SOURCE_DIR}/../Navio2/C++/Navio/PWM.h 
-#   )
+## Find catkin and any catkin packages
+find_package(catkin REQUIRED COMPONENTS roscpp rospy std_msgs genmsg)
+
+
+
+## Declare a catkin package
+catkin_package()
+
+## Build talker and listener
+include_directories(include ${catkin_INCLUDE_DIRS})
+# Add the headers from roscpp
+include_directories(${roscpp_INCLUDE_DIRS})
 
 # Local source files here
 SET(TARGET_SRC
@@ -25,5 +30,12 @@ include_directories(${CMAKE_SOURCE_DIR}/../../Navio2/C++/)
 
 add_library(NAV ${TARGET_SRC})
 
-add_executable(rcInput rcinput.cpp)
-target_link_libraries(rcInput NAV)
+add_executable(rcSend src/rcinput.cpp)
+target_link_libraries(rcSend ${catkin_LIBRARIES})
+
+target_link_libraries(rcSend NAV)
+
+
+add_executable(listener src/listener.cpp)
+target_link_libraries(listener ${catkin_LIBRARIES})
+
