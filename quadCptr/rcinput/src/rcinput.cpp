@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>       /* time */
 
 #include "ros/ros.h"
 #include "std_msgs/MultiArrayLayout.h"
@@ -10,24 +11,25 @@
 #include "Navio/RCInput.h"
 #include "Navio/Util.h"
 
+#define TESTING
+
 float mapRanges(float x, float in_min, float in_max, float out_min, float out_max);
 float processCH1(float ch1, std_msgs::Float32MultiArray *msg);
 
 int main(int argc, char **argv)
 {
   ros::init(argc, argv, "rcSend");
-
   ros::NodeHandle n;
-
   ros::Publisher pub = n.advertise<std_msgs::Float32MultiArray>("rcSend", 1000);
-
   ros::Rate loop_rate(10); /*10 HZ*/
-
+  
+  #ifdef FLYING
   RCInput rcin;
 
   if(check_apm()) { return 1;}
 
   rcin.init();
+  #endif
 
   while (ros::ok())
   {
@@ -35,11 +37,21 @@ int main(int argc, char **argv)
     std_msgs::Float32MultiArray msg;
 
     msg.data.clear();
-
+    
+    #ifdef FLYING
     volatile int rawInput1 = rcin.read(0);
     volatile int rawInput2 = rcin.read(1);
     volatile int rawInput3 = rcin.read(2);
     volatile int rawInput4 = rcin.read(3);
+    #endif
+    
+    #ifdef TESTING
+    srand (time(NULL));
+    volatile int rawInput1 = rand()%2000+1000;
+    volatile int rawInput2 = rand()%2000+1000;
+    volatile int rawInput3 = rand()%2000+1000;
+    volatile int rawInput4 = rand()%2000+1000;
+    #endif
 
     float dutyCycle =(float)rawInput1/1000;
 
@@ -86,7 +98,7 @@ float processCH1(float ch1, std_msgs::Float32MultiArray *msg)
 	}
 	if(ch1 < 1.45) 
 	{
-	ch1 = 2.5-ch1;
+	ch1 = 2.5-ch1; //flip slope around to increasing instead of decreasing
 	dutyCycle1 = mapRanges(ch1, 1.0, 1.5, 0, 0.3);
 	//printf("\nrc1: = %f L \n", dutyCycle1);
 	
