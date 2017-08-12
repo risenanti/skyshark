@@ -8,9 +8,19 @@
 
 #include "Navio/Util.h"
 
-float Arr[4];
 
-void chatterCallback(const std_msgs::Float32MultiArray::ConstPtr& array)
+
+class receiver
+{
+	public:
+	
+	void Callback(const std_msgs::Float32MultiArray::ConstPtr& array);
+	private:
+	
+	float Arr[4];
+};
+
+void receiver::Callback(const std_msgs::Float32MultiArray::ConstPtr& array)
 {
     int i = 0;
 	for(std::vector<float>::const_iterator it = array->data.begin(); it != array->data.end(); ++it)
@@ -36,8 +46,9 @@ int main(int argc, char **argv)
 
   ros::NodeHandle n;
 
+	receiver rcIN;
 
-  ros::Subscriber sub = n.subscribe("rcSend", 1000, chatterCallback);
+  ros::Subscriber sub = n.subscribe("rcSend", 1000, &receiver::Callback, &rcIN);
 
   ros::spin();
 

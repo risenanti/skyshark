@@ -10,6 +10,8 @@
 #include "Navio/RCInput.h"
 #include "Navio/Util.h"
 
+#define TESTING
+
 float mapRanges(float x, float in_min, float in_max, float out_min, float out_max);
 float processCH1(float ch1, std_msgs::Float32MultiArray *msg);
 
@@ -22,12 +24,14 @@ int main(int argc, char **argv)
   ros::Publisher pub = n.advertise<std_msgs::Float32MultiArray>("rcSend", 1000);
 
   ros::Rate loop_rate(10); /*10 HZ*/
-
+  
+  #ifdef FLYING
   RCInput rcin;
 
   if(check_apm()) { return 1;}
 
   rcin.init();
+  #endif
 
   while (ros::ok())
   {
@@ -36,10 +40,19 @@ int main(int argc, char **argv)
 
     msg.data.clear();
 
+    #ifdef FLYING
     volatile int rawInput1 = rcin.read(0);
     volatile int rawInput2 = rcin.read(1);
     volatile int rawInput3 = rcin.read(2);
     volatile int rawInput4 = rcin.read(3);
+    #endif
+    
+    #ifdef TESTING
+    volatile int rawInput1 = rand()%2000+1000;
+    volatile int rawInput2 = rand()%2000+1000;
+    volatile int rawInput3 = rand()%2000+1000;
+    volatile int rawInput4 = rand()%2000+1000;
+	#endif
 
     float dutyCycle =(float)rawInput1/1000;
 
