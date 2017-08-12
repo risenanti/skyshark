@@ -55,7 +55,7 @@ int main(int argc, char **argv)
     volatile int rawInput2 = rand()%2000+1000;
     volatile int rawInput3 = rand()%2000+1000;
     volatile int rawInput4 = rand()%2000+1000;
-	#endif
+    #endif
 
     float dutyCycle =(float)rawInput1/1000;
 
@@ -65,7 +65,7 @@ int main(int argc, char **argv)
     dutyCycle =(float)rawInput2/1000;
     dutyCycle = processCH(dutyCycle, &msg);
 
-	dutyCycle =(float)rawInput3/1000;
+    dutyCycle =(float)rawInput3/1000;
     dutyCycle = processCH(dutyCycle, &msg);
     
     dutyCycle =(float)rawInput4/1000;
