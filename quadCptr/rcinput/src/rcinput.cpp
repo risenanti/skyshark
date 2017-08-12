@@ -44,9 +44,16 @@ int main(int argc, char **argv)
     msg.data.clear();
 
     #ifdef FLYING
+    /*array element 0 left stick up and down*/
     volatile int rawInput1 = rcin.read(0);
+    
+    /*Array element 1 is direction and 2 is magnitude Right stick Side to Side */
     volatile int rawInput2 = rcin.read(1);
+    
+    /*Array Element 3 is direction and 4 is magnitude Right Stick Up and Down*/
     volatile int rawInput3 = rcin.read(2);
+    
+    /*Array Element 5 is direction and 6 is magnitude Left Stick Side to Side*/
     volatile int rawInput4 = rcin.read(3);
     #endif
     
