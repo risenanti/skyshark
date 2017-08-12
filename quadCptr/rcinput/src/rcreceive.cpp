@@ -17,23 +17,18 @@ class receiver
 	void Callback(const std_msgs::Float32MultiArray::ConstPtr& array);
 	private:
 	
-	float Arr[4];
+	float data[7];
 };
 
 void receiver::Callback(const std_msgs::Float32MultiArray::ConstPtr& array)
 {
-    int i = 0;
+	int i = 0;
 	for(std::vector<float>::const_iterator it = array->data.begin(); it != array->data.end(); ++it)
 	{
-		Arr[i] = *it;
+		data[i] = *it;
 		i++;
 	}
 	  
-	  for(int j = 0; j < 3; j++)
-	{
-		printf("%f, ", Arr[j]);
-	}
-	printf("\n");
 
 return;
 }

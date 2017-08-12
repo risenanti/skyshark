@@ -13,7 +13,10 @@
 #define TESTING
 
 float mapRanges(float x, float in_min, float in_max, float out_min, float out_max);
-float processCH1(float ch1, std_msgs::Float32MultiArray *msg);
+
+float boundary(float x);
+
+float processCH(float ch, std_msgs::Float32MultiArray *msg);
 
 int main(int argc, char **argv)
 {
@@ -56,16 +59,17 @@ int main(int argc, char **argv)
 
     float dutyCycle =(float)rawInput1/1000;
 
-    if(dutyCycle>1.75) {dutyCycle=1.75;}
-
-    if (dutyCycle<1.0) {dutyCycle=1.0;}
-
+    dutyCycle = boundary(dutyCycle);
     msg.data.push_back(dutyCycle);
 
     dutyCycle =(float)rawInput2/1000;
-    dutyCycle = processCH1(dutyCycle, &msg);
+    dutyCycle = processCH(dutyCycle, &msg);
 
-    msg.data.push_back(dutyCycle);
+	dutyCycle =(float)rawInput3/1000;
+    dutyCycle = processCH(dutyCycle, &msg);
+    
+    dutyCycle =(float)rawInput4/1000;
+    dutyCycle = processCH(dutyCycle, &msg);
 
     pub.publish(msg);
 
@@ -78,6 +82,13 @@ int main(int argc, char **argv)
   return 0;
 }
 
+float boundary(float x)
+{
+	if(x>1.8) {x=1.75;}
+	if (x<1.0) {x=1.0;}
+	
+	return x;
+}
 
 float mapRanges(float x, float in_min, float in_max, float out_min, float out_max)
 {
@@ -86,28 +97,35 @@ float mapRanges(float x, float in_min, float in_max, float out_min, float out_ma
 
 //msg[1] == 0 means RIGHT
 //msg[1] == 1 means LEFT
-float processCH1(float ch1, std_msgs::Float32MultiArray *msg)
+float processCH(float ch, std_msgs::Float32MultiArray *msg)
 {
-	float dutyCycle1;
-	if(ch1 > 1.55)
-	{
-	dutyCycle1 = mapRanges(ch1, 1.5, 2, 0, 0.3);
-	//printf("\nrc1: = %f R \n", dutyCycle1);
-	msg->data.push_back((float) 0.0);
-
-	return dutyCycle1;
-	}
-	if(ch1 < 1.45) 
-	{
-	ch1 = 2.5-ch1;
-	dutyCycle1 = mapRanges(ch1, 1.0, 1.5, 0, 0.3);
-	//printf("\nrc1: = %f L \n", dutyCycle1);
+	float dutyCycle;
 	
-	msg->data.push_back((float) 1.0);
+	if(ch > 1.55)
+	{
+		dutyCycle = mapRanges(ch, 1.5, 2, 0, 0.3);
+		msg->data.push_back((float) 0.0);
+		
+		msg->data.push_back(dutyCycle);
 
-	return dutyCycle1;
+		return dutyCycle;
 	}
-return ch1;
+	
+	
+	if(ch < 1.45) 
+	{
+		ch = 2.5-ch; //flip the value to ascending instead of descending
+		dutyCycle = mapRanges(ch, 1.0, 1.5, 0, 0.3);
+		
+		msg->data.push_back((float) 1.0);
+		msg->data.push_back(dutyCycle);
+
+		return dutyCycle;
+	}
+	
+	msg->data.push_back((float) -1.0);
+	msg->data.push_back(ch);
+	return ch;
 }
 
 
