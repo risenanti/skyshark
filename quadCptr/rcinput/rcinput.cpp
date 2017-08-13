@@ -10,7 +10,7 @@
 #include "Navio/RCInput.h"
 #include "Navio/Util.h"
 
-#define TESTING
+#define FLYING
 
 float mapRanges(float x, float in_min, float in_max, float out_min, float out_max);
 

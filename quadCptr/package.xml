@@ -1,6 +1,6 @@
 <package>
   <!-- Package Metadata -->
-  <name>rcSender</name>
+  <name>skySharkMain</name>
   <maintainer email="you@example.com">Your Name</maintainer>
   <description>
     A ROS tutorial.
