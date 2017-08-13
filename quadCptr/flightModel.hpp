@@ -99,11 +99,6 @@ void flightModel::rcCallback(const std_msgs::Float32MultiArray::ConstPtr& array)
 	clockCounterClockSwitch = data[5];
 	ClockCounterMagnitude   = data[6];
 	
-	/*for(int i = 0; i < 7;i++)
-	{
-		printf("%f, ", data[i]);
-	}
-	printf("\n");*/
 	
 	processControlInput();
 }
