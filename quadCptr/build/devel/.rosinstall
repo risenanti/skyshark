@@ -1,0 +1,2 @@
+- setup-file:
+    local-name: /home/pi/skyshark/quadCptr/build/devel/setup.sh

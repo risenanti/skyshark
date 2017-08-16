@@ -1,0 +1,8 @@
+prefix=/home/pi/skyshark/quadCptr/build/devel
+
+Name: skySharkMain
+Description: Description of skySharkMain
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/pi/skyshark/quadCptr/build/devel/lib 
+Requires: 
