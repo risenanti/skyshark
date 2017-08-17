@@ -53,17 +53,18 @@ if __name__ == "__main__":
         if msg.name() == "NAV_POSLLH":
             outstr = str(msg).split(",")[1:]
             outstr = "".join(outstr)
-            print(outstr)
-        if msg.name() == "NAV_STATUS":
-            outstr = str(msg).split(",")[1:2]
-            outstr = "".join(outstr)
-            print(outstr)
-
-#params = urllib.parse.urlencode({'name': 'drone1', 'lat': 31.328290, 'lon': -89.332563})
-#headers = {"Content-type": "application/x-www-form-urlencoded"}
-#conn = http.client.HTTPConnection('guard.us-east-1.elasticbeanstalk.com')
-#conn.request("POST", "/DroneUpdate", params, headers)
-#response = conn.getresponse()
-#print (response.status, response.reason)
-#conn.close()
-
+            
+            nex=outstr.split(" ",2)
+            lon = nex[0].split("=")
+            lat = nex[1].split("=")
+            
+            lonFloat = float(lon[1])
+            latFloat = float(lat[1])
+            
+            params = urllib.parse.urlencode({'name': 'drone1', 'lat': latFloat, 'lon': lonFloat})
+            headers = {"Content-type": "application/x-www-form-urlencoded"}
+            conn = http.client.HTTPConnection('guard.us-east-1.elasticbeanstalk.com')
+            conn.request("POST", "/DroneUpdate", params, headers)
+            response = conn.getresponse()
+            print (response.status, response.reason)
+            conn.close()
