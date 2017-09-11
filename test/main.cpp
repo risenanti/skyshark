@@ -1,11 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "ros/ros.h"
-#include "std_msgs/MultiArrayLayout.h"
-#include "std_msgs/MultiArrayDimension.h"
-#include "std_msgs/Float32MultiArray.h"
-
 #include "Navio/RCInput.h"
 #include "Navio/Util.h"
 #include "Navio/MPU9250.h"
@@ -13,7 +8,7 @@
 #include "Navio/PWM.h"
 #include <unistd.h>
 
-#include <PID.h>
+//#include <PID.h>
 
 #define MOTOR1 0
 #define MOTOR2 1
@@ -41,7 +36,8 @@ long map(long x, long in_min, long in_max, long out_min, long out_max)
 int main(int argc, char **argv)
 {
 	RCInput rcin;
-	InertialSensor *sensor = new MPU9250();
+	InertialSensor *sensor;
+	sensor = new MPU9250();
 	if(check_apm()) { return 1;}
 	
 	rcin.init();
