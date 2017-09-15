@@ -8,6 +8,10 @@
 #include "Navio/PWM.h"
 #include <unistd.h>
 
+<<<<<<< HEAD
+=======
+//#include <PID.h>
+>>>>>>> 5afcd6f7d0df295ff85e05b5abf033b540231526
 
 #define MOTOR1 0
 #define MOTOR2 1
@@ -35,7 +39,8 @@ long map(long x, long in_min, long in_max, long out_min, long out_max)
 int main(int argc, char **argv)
 {
 	RCInput rcin;
-	InertialSensor *sensor = new MPU9250();
+	InertialSensor *sensor;
+	sensor = new MPU9250();
 	if(check_apm()) { return 1;}
 	
 	rcin.init();
