@@ -34,7 +34,7 @@ int main(int argc, char **argv)
 	RCInput rcin;
 	InertialSensor *sensor;
 	sensor = new MPU9250();
-	Kalman myFilter(0.0001,NOISE,1023,0); //suggested initial values for high noise filtering
+	Kalman myFilter(0.0001,NOISE,1023,0); //process noise, sensor noise, x, initial value
 
 
 	if(check_apm()) { return 1;}
@@ -68,7 +68,7 @@ int main(int argc, char **argv)
 		volatile int rawInput1 = rcin.read(0);
 		
 		filteredAZ = myFilter.getFilteredValue(az);
-		printf("%f\n",filteredAZ);
+		printf("%7.3f\n",filteredAZ);
 		usleep(100000);
 		
 	}
