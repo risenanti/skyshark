@@ -12,7 +12,8 @@ SET(TARGET_SRC
     ${CMAKE_SOURCE_DIR}/../Navio2/C++/Navio/Util.cpp
     ${CMAKE_SOURCE_DIR}/../Navio2/C++/Navio/RGBled.cpp   
     ${CMAKE_SOURCE_DIR}/../Navio2/C++/Navio/PWM.cpp
-    ${CMAKE_SOURCE_DIR}/../Navio2/C++/Navio/gpio.cpp 
+    ${CMAKE_SOURCE_DIR}/../Navio2/C++/Navio/gpio.cpp
+    ${CMAKE_SOURCE_DIR}/../Navio2/C++/Navio/MPU9250.cpp 
     )
 include_directories(${CMAKE_SOURCE_DIR}/../Navio2/C++/)
 include_directories(${CMAKE_SOURCE_DIR})

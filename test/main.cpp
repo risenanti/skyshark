@@ -8,10 +8,7 @@
 #include "Navio/PWM.h"
 #include <unistd.h>
 
-<<<<<<< HEAD
-=======
 //#include <PID.h>
->>>>>>> 5afcd6f7d0df295ff85e05b5abf033b540231526
 
 #define MOTOR1 0
 #define MOTOR2 1
@@ -21,15 +18,6 @@
 PWM pwm;
 
 #define wrap_180(x) (x < -180 ? x+360 : (x > 180 ? x - 360: x))
-
-int setPWMdutyCycle(float x)
-{
-	pwm.set_duty_cycle(MOTOR1, x);
-	pwm.set_duty_cycle(MOTOR2, x);
-	pwm.set_duty_cycle(MOTOR3, x);
-	pwm.set_duty_cycle(MOTOR4, x);
-	return 1;
-}
 
 long map(long x, long in_min, long in_max, long out_min, long out_max)
 {
@@ -41,6 +29,7 @@ int main(int argc, char **argv)
 	RCInput rcin;
 	InertialSensor *sensor;
 	sensor = new MPU9250();
+
 	if(check_apm()) { return 1;}
 	
 	rcin.init();
@@ -68,6 +57,8 @@ int main(int argc, char **argv)
         	sensor->read_magnetometer(&mx, &my, &mz);
 		/*array element 0 left stick up and down*/
 		volatile int rawInput1 = rcin.read(0);
+		printf("%f\n",ax);
+		usleep(100000);
 		
 	}
 	
