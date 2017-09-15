@@ -1,11 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "ros/ros.h"
-#include "std_msgs/MultiArrayLayout.h"
-#include "std_msgs/MultiArrayDimension.h"
-#include "std_msgs/Float32MultiArray.h"
-
 #include "Navio/RCInput.h"
 #include "Navio/Util.h"
 #include "Navio/MPU9250.h"
@@ -13,7 +8,6 @@
 #include "Navio/PWM.h"
 #include <unistd.h>
 
-#include <PID.h>
 
 #define MOTOR1 0
 #define MOTOR2 1
@@ -48,8 +42,8 @@ int main(int argc, char **argv)
 	sensor->initialize();
 	
 	float ax, ay, az;
-    float gx, gy, gz;
-    float mx, my, mz;
+	float gx, gy, gz;
+	float mx, my, mz;
 	
 	pwm.enable(MOTOR1);
 	pwm.enable(MOTOR2);
@@ -64,9 +58,9 @@ int main(int argc, char **argv)
 	while (1)
 	{
 		sensor->update();
-        sensor->read_accelerometer(&ax, &ay, &az);
-        sensor->read_gyroscope(&gx, &gy, &gz);
-        sensor->read_magnetometer(&mx, &my, &mz);
+	        sensor->read_accelerometer(&ax, &ay, &az);
+        	sensor->read_gyroscope(&gx, &gy, &gz);
+        	sensor->read_magnetometer(&mx, &my, &mz);
 		/*array element 0 left stick up and down*/
 		volatile int rawInput1 = rcin.read(0);
 		
