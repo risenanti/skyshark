@@ -57,7 +57,7 @@ int main(int argc, char **argv)
         	sensor->read_magnetometer(&mx, &my, &mz);
 		/*array element 0 left stick up and down*/
 		volatile int rawInput1 = rcin.read(0);
-		printf("%f\n",ax);
+		printf("%f\n",az);
 		usleep(100000);
 		
 	}
