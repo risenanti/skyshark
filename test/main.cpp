@@ -1,12 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 #include "Navio/RCInput.h"
 #include "Navio/Util.h"
 #include "Navio/MPU9250.h"
 #include "Navio/LSM9DS1.h"
 #include "Navio/PWM.h"
-#include <unistd.h>
+
+#include "Kalman.h"
 
 //#include <PID.h>
 
@@ -15,7 +17,10 @@
 #define MOTOR3 2
 #define MOTOR4 3
 
+#define NOISE 9.8
+
 PWM pwm;
+
 
 #define wrap_180(x) (x < -180 ? x+360 : (x > 180 ? x - 360: x))
 
@@ -29,6 +34,8 @@ int main(int argc, char **argv)
 	RCInput rcin;
 	InertialSensor *sensor;
 	sensor = new MPU9250();
+	Kalman myFilter(0.0001,NOISE,1023,0); //suggested initial values for high noise filtering
+
 
 	if(check_apm()) { return 1;}
 	
@@ -38,6 +45,8 @@ int main(int argc, char **argv)
 	float ax, ay, az;
 	float gx, gy, gz;
 	float mx, my, mz;
+	
+	float filteredAZ;
 	
 	pwm.enable(MOTOR1);
 	pwm.enable(MOTOR2);
@@ -52,12 +61,14 @@ int main(int argc, char **argv)
 	while (1)
 	{
 		sensor->update();
-	        sensor->read_accelerometer(&ax, &ay, &az);
-        	sensor->read_gyroscope(&gx, &gy, &gz);
-        	sensor->read_magnetometer(&mx, &my, &mz);
+	    sensor->read_accelerometer(&ax, &ay, &az);
+        sensor->read_gyroscope(&gx, &gy, &gz);
+        sensor->read_magnetometer(&mx, &my, &mz);
 		/*array element 0 left stick up and down*/
 		volatile int rawInput1 = rcin.read(0);
-		printf("%f\n",az);
+		
+		filteredAZ = myFilter.getFilteredValue(az);
+		printf("%f\n",filteredAZ);
 		usleep(100000);
 		
 	}
