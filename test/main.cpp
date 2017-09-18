@@ -9,8 +9,14 @@
 #include "Navio/PWM.h"
 
 #include "Kalman.h"
+#include "millis.hpp"
 
-//#include <PID.h>
+#include <iostream>
+#include <stdlib.h>
+#include <stdio.h>
+#include <fstream>
+
+using namespace std;
 
 #define MOTOR1 0
 #define MOTOR2 1
@@ -58,20 +64,36 @@ int main(int argc, char **argv)
 	pwm.set_period(MOTOR3,50);
 	pwm.set_period(MOTOR4,50);
 	
-	while (1)
+	fstream myfile;
+	myfile.open("accelData.txt", ofstream::out);
+	myfile <<"TIMESTEP    DATA" << endl;
+	float timestep = 0.00;
+	
+	for (int i = 0; i < 10000; i++)
 	{
 		sensor->update();
 	    sensor->read_accelerometer(&ax, &ay, &az);
-        sensor->read_gyroscope(&gx, &gy, &gz);
-        sensor->read_magnetometer(&mx, &my, &mz);
-		/*array element 0 left stick up and down*/
-		volatile int rawInput1 = rcin.read(0);
-		
-		filteredAZ = myFilter.getFilteredValue(az);
-		printf("%7.3f\n",filteredAZ);
-		usleep(100000);
-		
+	    myfile << timestep <<" AX:"<<ax <<" AY:" << ay <<" AZ:" <<az<<endl;
+	    usleep(100);
+	    timestep+=100;
 	}
+	
+	myfile.close();
+	
+	//while (1)
+	//{
+	//	sensor->update();
+	//   sensor->read_accelerometer(&ax, &ay, &az);
+    //    sensor->read_gyroscope(&gx, &gy, &gz);
+    //    sensor->read_magnetometer(&mx, &my, &mz);
+	//	/*array element 0 left stick up and down*/
+		//volatile int rawInput1 = rcin.read(0);
+		
+		//filteredAZ = myFilter.getFilteredValue(az);
+		//printf("%7.3f\n",filteredAZ);
+	//	usleep(100000);
+		
+	//}
 	
 	return 0;
 }
