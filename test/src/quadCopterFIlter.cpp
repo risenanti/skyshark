@@ -10,26 +10,26 @@ using namespace std;
 void readDataFile(fstream &data, vector<string> &dataBuffer);
 void dataToDoub(vector<string> &dataBuffer, vector<double> &accelData, vector<int> &time);
 
-#define NOISE 0.009
+#define NOISE 0.2100
 
 int main() {
 	vector<string> dataBuffer;
 	vector<double> accelData;
 	vector<int>    time;
+	vector<double> filteredValue;
 	fstream data;
 
 	readDataFile(data, dataBuffer);
 	dataToDoub(dataBuffer, accelData, time);
 
-	Kalman myFilter(0.001,NOISE,1023,0); //suggested initial values for high noise filtering
-
-	vector<double> filteredValue;
+	Kalman myFilter(0.0001,NOISE,1023,0); //suggested initial values for high noise filtering
 
 	for (int i = 0; i < accelData.size(); i++)
 	{
 		filteredValue.push_back(myFilter.getFilteredValue(accelData[i]));
 	}
 
+	/*Print out acceleration data*/
 	data.open("dataOut.txt", fstream::out);
 	for (int i = 0; i <  filteredValue.size(); i++)
 	{
@@ -45,6 +45,32 @@ int main() {
 		//cout<<buff<<endl;
 	}
 	data.close();
+	/*end printing acceleration*/
+
+	vector<double> velocity;
+	vector<double> displacement;
+	double Vh;
+	double TIMESTEP;
+	double x=0.00;
+
+	for (int i = 0; i < filteredValue.size(); i++)
+	{
+		TIMESTEP = 0.000001*time[1];
+		double veloc = Vh+((filteredValue[i]-9.857)*TIMESTEP);
+		Vh=veloc;
+		velocity.push_back(veloc);
+
+		double Xh = x + ((double)0.5*((Vh+velocity[i]) * TIMESTEP));
+		x = Xh;
+		displacement.push_back(Xh);
+		cout << displacement[i]<<endl;
+	}
+
+
+
+	//Xhat[i] = X+((double)0.5*(V+Vhat[i])*(double)TIMESTEP);
+	//X=Xhat[i];
+
 	return 0;
 }
 
