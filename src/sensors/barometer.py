@@ -41,10 +41,12 @@ def publishBarometerData():
 		baro.readPressure()
 		baro.readTemperature()
 		
+		# Process the data
+		baro.calculatePressureAndTemperature()
+		
 		# Publish data as string, for now.
 		data = "Temperature(C): %.6f" % (baro.TEMP), "Pressure(millibar): %.6f" % (baro.PRES), "Time: %s" % rospy.get_time()
-		rospy.loginfo(data)
-		pub.publish(data)
+		pub.publish(str(data))
 		rate.sleep()
 
 ########################################################################
