@@ -5,9 +5,17 @@ set (CMAKE_CXX_STANDARD 11)
 
 project(skySharkMain)
 
-find_package(catkin REQUIRED COMPONENTS roscpp rospy std_msgs genmsg)
-catkin_package()
+find_package(catkin REQUIRED COMPONENTS message_generation roscpp rospy std_msgs genmsg roscpp rospy std_msgs message_generation genmsg)
 
+generate_messages(
+   DEPENDENCIES
+   std_msgs
+)
+
+catkin_package(
+  CATKIN_DEPENDS
+  message_runtime
+)
 
 include_directories(include ${catkin_INCLUDE_DIRS})
 include_directories(${roscpp_INCLUDE_DIRS})
@@ -19,7 +27,8 @@ SET(TARGET_SRC
     ${CMAKE_SOURCE_DIR}/../externals/Navio2/C++/Navio/RGBled.cpp   
     ${CMAKE_SOURCE_DIR}/../externals/Navio2/C++/Navio/PWM.cpp
     ${CMAKE_SOURCE_DIR}/../externals/Navio2/C++/Navio/gpio.cpp 
-    )
+)
+
 include_directories(${CMAKE_SOURCE_DIR}/../externals/Navio2/C++/)
 include_directories(${CMAKE_SOURCE_DIR})
 
