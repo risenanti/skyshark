@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 2.8)
 
 set (CMAKE_CXX_STANDARD 11)
 
-project(skySharkMain)
+project(skyshark_main)
 
 find_package(catkin REQUIRED COMPONENTS message_generation roscpp rospy std_msgs genmsg roscpp rospy std_msgs message_generation genmsg)
 

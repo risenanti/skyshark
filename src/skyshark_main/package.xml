@@ -1,0 +1,25 @@
+<package format="2">
+	<!-- Metadata -->
+	<name>skyshark_main</name>
+	<version>0.0.0</version>
+	<description>
+	This package provides foo capability.
+	</description>
+	<maintainer email="you@example.com">Your Name</maintainer>
+	<license>BSD</license>
+
+	<!-- Dependencies -->
+	<depend>roscpp</depend>
+	<depend>std_msgs</depend>
+
+	<!-- Build Dependencies -->
+	<build_depend>message_generation</build_depend>
+
+	<!-- Run Dependencies -->
+	<exec_depend>message_runtime</exec_depend>
+	<exec_depend>rospy</exec_depend>
+
+	<!-- Required by Catkin -->
+	<buildtool_depend>catkin</buildtool_depend>
+</package>
+
