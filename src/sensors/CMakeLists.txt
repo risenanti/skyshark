@@ -6,10 +6,6 @@ project(sensors)
 
 find_package(catkin REQUIRED COMPONENTS rospy std_msgs sensor_msgs message_generation genmsg)
 
-add_message_files(
-  FILES
-)
-
 generate_messages(
    DEPENDENCIES
    std_msgs
