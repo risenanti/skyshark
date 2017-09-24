@@ -66,5 +66,5 @@ if __name__ == "__main__":
             conn = http.client.HTTPConnection('guard.us-east-1.elasticbeanstalk.com')
             conn.request("POST", "/DroneUpdate", params, headers)
             response = conn.getresponse()
-            print (response.status, response.reason)
+#            print (response.status, response.reason)
             conn.close()

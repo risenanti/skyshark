@@ -1,0 +1,54 @@
+#include <iostream>
+#include <fstream>
+#include <vector>
+#include <stdlib.h>
+
+using namespace std;
+
+
+int main() {
+	vector<string> dataBuffer;
+	fstream data;
+	string line;
+	data.open("accelData.txt", fstream::in);
+	while(1)
+		{
+			if (data.eof()) {break;}
+			getline(data,line);
+			dataBuffer.push_back(line);
+		}
+	data.close();
+
+	vector<double> accelData;
+
+	for (int i = 1; i <  dataBuffer.size(); i++)
+	{
+		line = dataBuffer[i];
+		int pos = line.find("AZ:");
+		string lineParse;
+
+		for(int j = 3; j < 9; j++)
+		{
+			if((pos+j) < line.size())
+			{
+					lineParse+=line.at(pos+j);
+			}
+
+		}
+			double tempData = atof(lineParse.c_str());
+			accelData.push_back(tempData);
+			cout<<accelData[i] <<endl;
+	}
+	dataBuffer.clear();
+
+	data.open("test.txt", fstream::out);
+	for (int i = 0; i <  accelData.size(); i++)
+	{
+		data<<i;
+		data << " ";
+		data<< accelData[i];
+		data<<endl;
+	}
+	data.close();
+	return 0;
+}
