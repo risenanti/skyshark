@@ -1,0 +1,25 @@
+<package format="2">
+	<!-- Metadata -->
+	<name>sensors</name>
+	<version>0.0.0</version>
+	<description>
+		Publishes raw sensor data
+	</description>
+	<maintainer email="mlaga97@gmail.com">Matieu Lagarde</maintainer>
+	<license>BSD</license>
+
+	<!-- Required by Catkin -->
+	<buildtool_depend>catkin</buildtool_depend>
+
+	<!-- Dependencies -->
+	<depend>rospy</depend>
+	<depend>navio</depend>
+	<depend>std_msgs</depend>
+	<depend>sensor_msgs</depend>
+
+	<!-- Build Dependencies -->
+	<build_depend>message_generation</build_depend>
+
+	<!-- Run Dependencies -->
+	<exec_depend>message_runtime</exec_depend>
+</package>
