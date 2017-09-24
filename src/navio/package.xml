@@ -3,9 +3,9 @@
 	<name>navio</name>
 	<version>0.0.0</version>
 	<description>
-	This package provides foo capability.
+		This package provides the navio2 library.
 	</description>
-	<maintainer email="you@example.com">Your Name</maintainer>
+	<maintainer email="risenanti@gmail.com">Keith Conley</maintainer>
 	<license>BSD</license>
 
 	<!-- Required by Catkin -->

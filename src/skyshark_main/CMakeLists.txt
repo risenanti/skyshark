@@ -1,4 +1,3 @@
-# Declare the version of the CMake API for forward-compatibility
 cmake_minimum_required(VERSION 2.8)
 
 set (CMAKE_CXX_STANDARD 11)
@@ -27,5 +26,5 @@ target_link_libraries(skyshark navio)
 target_link_libraries(skyshark ${catkin_LIBRARIES})
 
 add_executable(rcSend rcinput/rcinput.cpp)
-target_link_libraries(rcSend ${catkin_LIBRARIES})
 target_link_libraries(rcSend navio)
+target_link_libraries(rcSend ${catkin_LIBRARIES})
