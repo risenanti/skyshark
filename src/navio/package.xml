@@ -1,0 +1,13 @@
+<package format="2">
+	<!-- Metadata -->
+	<name>navio</name>
+	<version>0.0.0</version>
+	<description>
+	This package provides foo capability.
+	</description>
+	<maintainer email="you@example.com">Your Name</maintainer>
+	<license>BSD</license>
+
+	<!-- Required by Catkin -->
+	<buildtool_depend>catkin</buildtool_depend>
+</package>

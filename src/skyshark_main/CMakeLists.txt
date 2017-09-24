@@ -17,27 +17,15 @@ catkin_package(
   message_runtime
 )
 
-include_directories(include ${catkin_INCLUDE_DIRS})
-include_directories(${roscpp_INCLUDE_DIRS})
-
-# Local source files here
-SET(TARGET_SRC
-    ${CMAKE_SOURCE_DIR}/../externals/Navio2/C++/Navio/RCInput.cpp
-    ${CMAKE_SOURCE_DIR}/../externals/Navio2/C++/Navio/Util.cpp
-    ${CMAKE_SOURCE_DIR}/../externals/Navio2/C++/Navio/RGBled.cpp   
-    ${CMAKE_SOURCE_DIR}/../externals/Navio2/C++/Navio/PWM.cpp
-    ${CMAKE_SOURCE_DIR}/../externals/Navio2/C++/Navio/gpio.cpp 
-)
-
-include_directories(${CMAKE_SOURCE_DIR}/../externals/Navio2/C++/)
 include_directories(${CMAKE_SOURCE_DIR})
-
-add_library(NAV ${TARGET_SRC})
+include_directories(${roscpp_INCLUDE_DIRS})
+include_directories(include ${catkin_INCLUDE_DIRS})
+include_directories(${CMAKE_SOURCE_DIR}/../externals/Navio2/C++/)
 
 add_executable(skyshark main.cpp)
-target_link_libraries(skyshark NAV)
+target_link_libraries(skyshark navio)
 target_link_libraries(skyshark ${catkin_LIBRARIES})
 
 add_executable(rcSend rcinput/rcinput.cpp)
 target_link_libraries(rcSend ${catkin_LIBRARIES})
-target_link_libraries(rcSend NAV)
+target_link_libraries(rcSend navio)
