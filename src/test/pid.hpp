@@ -5,6 +5,7 @@
 #include <string.h>
 #include <sys/time.h>
 #include <unistd.h>
+#include "millis.hpp"
 
 /*working variables*/
 unsigned long lastTime;
