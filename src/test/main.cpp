@@ -8,7 +8,7 @@
 #include "Navio/LSM9DS1.h"
 #include "Navio/PWM.h"
 
-#include "Kalman.h"
+#include "pid.hpp"
 #include "millis.hpp"
 
 #include <iostream>
@@ -23,7 +23,8 @@ using namespace std;
 #define MOTOR3 2
 #define MOTOR4 3
 
-#define NOISE 9.8
+#define RC_THR_MIN   1070
+#define RC_THR_MAX   2000
 
 PWM pwm;
 
@@ -40,8 +41,8 @@ int main(int argc, char **argv)
 	RCInput rcin;
 	InertialSensor *sensor;
 	sensor = new MPU9250();
-	Kalman myFilter(0.0001,NOISE,1023,0); //process noise, sensor noise, x, initial value
 
+	createMillisTimer(); //create timer
 
 	if(check_apm()) { return 1;}
 	
@@ -64,36 +65,21 @@ int main(int argc, char **argv)
 	pwm.set_period(MOTOR3,50);
 	pwm.set_period(MOTOR4,50);
 	
-	fstream myfile;
-	myfile.open("accelData.txt", ofstream::out);
-	myfile <<"TIMESTEP    DATA" << endl;
-	float timestep = 0.00;
+	SetOutputLimits(RC_THR_MIN, RC_THR_MAX)
+	//SetTunings(double Kp, double Ki, double Kd)
 	
-	for (int i = 0; i < 10000; i++)
+	while (1)
 	{
 		sensor->update();
 	    sensor->read_accelerometer(&ax, &ay, &az);
-	    myfile << timestep <<" AX:"<<ax <<" AY:" << ay <<" AZ:" <<az<<endl;
-	    usleep(100);
-	    timestep+=100;
+        sensor->read_gyroscope(&gx, &gy, &gz);
+        sensor->read_magnetometer(&mx, &my, &mz);
+		/*array element 0 left stick up and down*/
+		volatile int rawInput1 = rcin.read(0); //read throttle from controller
+		
+		usleep(1000);
+		
 	}
-	
-	myfile.close();
-	
-	//while (1)
-	//{
-	//	sensor->update();
-	//   sensor->read_accelerometer(&ax, &ay, &az);
-    //    sensor->read_gyroscope(&gx, &gy, &gz);
-    //    sensor->read_magnetometer(&mx, &my, &mz);
-	//	/*array element 0 left stick up and down*/
-		//volatile int rawInput1 = rcin.read(0);
-		
-		//filteredAZ = myFilter.getFilteredValue(az);
-		//printf("%7.3f\n",filteredAZ);
-	//	usleep(100000);
-		
-	//}
 	
 	return 0;
 }
