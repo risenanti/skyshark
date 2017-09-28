@@ -1,6 +1,12 @@
 #include "pid.h"
-
 #include "millis.h"
+
+//***************************************************************
+//* Arduino PID Library - Version 1.2.1
+//* by Brett Beauregard <br3ttb@gmail.com> brettbeauregard.com
+//*
+//* This Library is licensed under the MIT License
+//***************************************************************
 
 
 /*Constructor (...)*********************************************************

@@ -1,3 +1,9 @@
+/*KEITH CONLEY
+**USM
+**FALL 2018
+*/
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -67,8 +73,8 @@ double pidRollStab, pidRollStabOut;
 
 //PID pitchRate (&input, &output, &setpoint, 0.7 , 1.0, 0.0, DIRECT);
 //PID rollRate  (&input, &output, &setpoint, 0.7 , 1.0, 0.0, DIRECT);
-PID pitchStab (&pidPitchStab, &pidPitchStabOut, &setpoint, 4.5 , 0.0, 0.0, DIRECT);
-PID rollStab  (&pidRollStab, &pidRollStabOut, &setpoint, 0.0 , 0.0, 0.0, DIRECT);
+PID pitchStab (&pidPitchStab, &pidPitchStabOut, 1.0, 4.5 , 0.0, 0.0, DIRECT);
+PID rollStab  (&pidRollStab, &pidRollStabOut, 1.0, 0.0 , 0.0, 0.0, DIRECT);
 //PID yawRate   (&input, &output, &setpoint, 2.7 , 1.0, 0.0, DIRECT);
 //PID yawStab   (&input, &output, &setpoint, 10.0, 0.0, 0.0, DIRECT);
 
