@@ -5,7 +5,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include <math.h>
 
 #include "pid.h"
 #include "millis.h"
@@ -37,11 +36,20 @@ double pitch;
 double yaw; 	
 
 static double yaw_target;
+double pitch_stab_output, roll_stab_output, yaw_stab_output;
+double pidRollStab, pidRollStabOut;
 
 volatile int rawInput1; //throttle from controller
 volatile int rawInput2; //roll
 volatile int rawInput3; //pitch
 volatile int rawInput4; //yaw
+
+//PID pitchRate (&input, &output,              &setpoint,   0.7, 1.0, 0.0, DIRECT);
+//PID rollRate  (&input, &output,              &setpoint,   0.7, 1.0, 0.0, DIRECT);
+PID pitchStab (&pitch, &pitch_stab_output,   &rcpit,      4.5, 0.0, 0.0, DIRECT);
+PID rollStab  (&roll,  &roll_stab_output,    &rcroll,     4.5, 0.0, 0.0, DIRECT);
+//PID yawRate   (&input, &output,              &setpoint,   2.7, 1.0, 0.0, DIRECT);
+PID yawStab   (&yaw,   &yaw_stab_output,     &yaw_target, 10.0, 0.0, 0.0, DIRECT);
 
 PWM motors;
 
@@ -58,24 +66,6 @@ int main(int argc, char **argv)
 	
 	enableMotors();
 	
-	/*Create and setup PIDS*/
-	PID pitchRate;
-			pitchRate.SetTunings(0.70, 1.00, 0.00);
-			pitchRate.setImax(50.00);
-	PID pitchStab;
-			pitchStab.SetTunings(4.50, 0.00, 0.00);
-	PID rollRate;
-			rollRate.SetTunings(0.700, 1.00, 0.00);
-			rollRate.setImax(50);
-	PID rollStab;
-			rollStab.SetTunings(4.500, 0.00, 0.00);
-	PID yawRate;
-			yawRate.SetTunings(2.70, 1.00, 0.00);
-			yawRate.setImax(50.00);
-	PID yawStab;
-			yawStab.SetTunings(10.00, 0.00, 0.00);
-	/*END PID SETUP*/
-	
 	while (1)
 	{
 		yaw_target = 0;  
@@ -90,36 +80,19 @@ int main(int argc, char **argv)
 		
 		if(rcthr > RC_THR_MIN + 100) 
 		{  // Throttle raised, turn on stablisation.
-				
-		float pitch_stab_output = constrain(pitchStab.getPID((float)rcpit - pitch), -250, 250); 
-		float roll_stab_output = constrain(rollStab.getPID((float)rcroll - roll), -250, 250);
-		float yaw_stab_output = constrain(yawStab.getPID(wrap_180(yaw_target - yaw)), -360, 360);
-  
-		//if pilot asking for yaw change feed directly to rate pid (overwriting yaw stab output)
-		//side note: cheating PID
-		if(abs(rcyaw ) > 5) {
-		  yaw_stab_output = rcyaw;
-		  yaw_target = yaw;   // remember this yaw for when pilot stops
-		}
-		
-		// rate PIDS
-		long pitch_output =  (long) constrain(pitchRate.getPID(pitch_stab_output - pitch), - 500, 500);  
-		long roll_output =  (long) constrain(rollRate.getPID(roll_stab_output - roll), -500, 500);  
-		long yaw_output =  (long) constrain(yawRate.getPID(yaw_stab_output - yaw), -500, 500);  
-		
-		motors.set_duty_cycle(MOTOR_FL, (rcthr + roll_output + pitch_output - yaw_output)/1000);
-		motors.set_duty_cycle(MOTOR_BL, (rcthr + roll_output - pitch_output + yaw_output)/1000);
-		motors.set_duty_cycle(MOTOR_FR, (rcthr - roll_output + pitch_output + yaw_output)/1000);
-		motors.set_duty_cycle(MOTOR_BR, (rcthr - roll_output - pitch_output - yaw_output)/1000);
-		
+			//pidPitchStab = rcpit-pitch;
+			//pitchStab.Compute();
+			//double piStabOut = constrain(pidPitchStabOut,-250,250);
+			
+			//pidRollStab = rcroll - roll;
+			//rollStab.Compute();
+			//double piRollStabOut = constrain (pidRollStabOut, -250, 250);
+			
 		}
 		
 		else {
 			motorsOff();
 			yaw_target = yaw;
-			pitchRate.resetI();
-			yawRate.resetI();
-			rollRate.resetI();
 		}
 	}
 	
@@ -144,9 +117,9 @@ void mapRCval(void)
 
 void setStabVal(void)
 {
-	roll  = gx*(double)180/M_PI; //measured values inputs to PID converted from radians to degrees
-	pitch = gy*(double)180/M_PI;
-	yaw   = gz*(double)180/M_PI; 
+	roll  = gx; //measured values inputs to PID
+	pitch = gy;
+	yaw   = gz; 
 }
 
 void enableMotors(void)
@@ -164,10 +137,10 @@ void enableMotors(void)
 
 void motorsOff(void)
 {
-	motors.set_duty_cycle(MOTOR_FL,1.000);
-	motors.set_duty_cycle(MOTOR_FR,1.000);
-	motors.set_duty_cycle(MOTOR_BL,1.000);
-	motors.set_duty_cycle(MOTOR_BR,1.000);
+	motors.set_duty_cycle(MOTOR_FL,1000);
+	motors.set_duty_cycle(MOTOR_FR,1000);
+	motors.set_duty_cycle(MOTOR_BL,1000);
+	motors.set_duty_cycle(MOTOR_BR,1000);
 }
 
 void writeStableMotors(void)

@@ -7,13 +7,12 @@
 #define millis_h
 
 void timer_handler (int signum);
-int createMillisTimer(void);
+void createMillisTimer(void);
 long long int millis(void);
 void delay(int x);
 
 namespace millTim{
 
 	static long long int count;
-	static bool millisFlag = false;
 }
 #endif
