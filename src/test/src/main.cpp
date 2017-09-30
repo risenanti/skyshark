@@ -43,8 +43,6 @@ volatile int rawInput2; //roll
 volatile int rawInput3; //pitch
 volatile int rawInput4; //yaw
 
-PWM motors;
-
 int main(int argc, char **argv)
 {
 	InertialSensor *sensor;
@@ -56,7 +54,16 @@ int main(int argc, char **argv)
 	rcin.init();
 	sensor->initialize();
 	
-	enableMotors();
+	PWM motors;
+	motors.enable(MOTOR_FL);
+	motors.enable(MOTOR_FR);
+	motors.enable(MOTOR_BL);
+	motors.enable(MOTOR_BR);
+
+	motors.set_period(MOTOR_FL,50);
+	motors.set_period(MOTOR_FR,50);
+	motors.set_period(MOTOR_BL,50);
+	motors.set_period(MOTOR_BR,50);
 	
 	/*Create and setup PIDS*/
 	PID pitchRate;
@@ -117,7 +124,10 @@ int main(int argc, char **argv)
 		}
 		
 		else {
-			motorsOff();
+			motors.set_duty_cycle(MOTOR_FL,1.000);
+			motors.set_duty_cycle(MOTOR_FR,1.000);
+			motors.set_duty_cycle(MOTOR_BL,1.000);
+			motors.set_duty_cycle(MOTOR_BR,1.000);
 			yaw_target = yaw;
 			pitchRate.resetI();
 			yawRate.resetI();
