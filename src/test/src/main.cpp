@@ -110,13 +110,17 @@ int main(int argc, char **argv)
 		long roll_output =  (long) constrain(rollRate.getPID(roll_stab_output - roll), -500, 500);  
 		long yaw_output =  (long) constrain(yawRate.getPID(yaw_stab_output - yaw), -500, 500);  
 		
-		motors.set_duty_cycle(MOTOR_FL, (float)(rcthr + roll_output + pitch_output - yaw_output)/1000);
-		motors.set_duty_cycle(MOTOR_BL, (float)(rcthr + roll_output - pitch_output + yaw_output)/1000);
-		motors.set_duty_cycle(MOTOR_FR, (float)(rcthr - roll_output + pitch_output + yaw_output)/1000);
-		motors.set_duty_cycle(MOTOR_BR, (float)(rcthr - roll_output - pitch_output - yaw_output)/1000);
+		float s = (rcthr + roll_output + pitch_output - yaw_output)/1000;
+		float d = (rcthr + roll_output - pitch_output + yaw_output)/1000;
+		float g = (rcthr - roll_output + pitch_output + yaw_output)/1000;
+		float h = (rcthr - roll_output - pitch_output - yaw_output)/1000;
 		
-		float s  = (rcthr + roll_output + pitch_output - yaw_output)/1000;
-		printf("%f\n",s);
+		motors.set_duty_cycle(MOTOR_FL, s);
+		motors.set_duty_cycle(MOTOR_BL, d);
+		motors.set_duty_cycle(MOTOR_FR, g);
+		motors.set_duty_cycle(MOTOR_BR, h);
+		
+		//printf("%f\n",s);
 		}
 		
 		else {
