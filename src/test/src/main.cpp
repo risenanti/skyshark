@@ -17,10 +17,6 @@
 #include "Navio/LSM9DS1.h"
 #include "Navio/PWM.h"
 
-void enableMotors(void);
-void motorsOff(void);
-void writeStableMotors(void); //write stablization to motors
-
 RCInput rcin;
 void readRCin(void); //read raw rc val
 
@@ -160,33 +156,3 @@ void setStabVal(void)
 	pitch = gy*(double)180/M_PI;
 	yaw   = gz*(double)180/M_PI; 
 }
-
-void enableMotors(void)
-{
-	motors.enable(MOTOR_FL);
-	motors.enable(MOTOR_FR);
-	motors.enable(MOTOR_BL);
-	motors.enable(MOTOR_BR);
-
-	motors.set_period(MOTOR_FL,50);
-	motors.set_period(MOTOR_FR,50);
-	motors.set_period(MOTOR_BL,50);
-	motors.set_period(MOTOR_BR,50);
-}
-
-void motorsOff(void)
-{
-	motors.set_duty_cycle(MOTOR_FL,1.000);
-	motors.set_duty_cycle(MOTOR_FR,1.000);
-	motors.set_duty_cycle(MOTOR_BL,1.000);
-	motors.set_duty_cycle(MOTOR_BR,1.000);
-}
-
-void writeStableMotors(void)
-{
-//	motors.set_duty_cycle(MOTOR_FL, rcthr + roll_output + pitch_output - yaw_output);
-//    motors.set_duty_cycle(MOTOR_BL, rcthr + roll_output - pitch_output + yaw_output);
-//   motors.set_duty_cycle(MOTOR_FR, rcthr - roll_output + pitch_output + yaw_output);
-//    motors.set_duty_cycle(MOTOR_BR, rcthr - roll_output - pitch_output - yaw_output);
-}
-
