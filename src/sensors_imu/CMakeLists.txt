@@ -6,11 +6,6 @@ project(sensors_imu)
 
 find_package(catkin REQUIRED COMPONENTS roscpp rospy std_msgs message_generation genmsg geometry_msgs)
 
-add_message_files(
-  FILES
-  RawIMU_9.msg
-)
-
 generate_messages(
    DEPENDENCIES
    geometry_msgs
