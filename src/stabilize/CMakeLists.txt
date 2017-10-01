@@ -5,7 +5,14 @@ set (CMAKE_CXX_STANDARD 11)
 
 project(stabilize)
 
-find_package(catkin REQUIRED COMPONENTS roscpp rospy std_msgs geometry_msgs message_generation genmsg)
+find_package(catkin REQUIRED COMPONENTS roscpp rospy std_msgs geometry_msgs message_generation genmsg skyshark_msgs)
+
+generate_messages(
+   DEPENDENCIES
+   std_msgs
+   geometry_msgs
+   skyshark_msgs
+)
 
 catkin_package()
 include_directories(${CMAKE_SOURCE_DIR}/../externals/Navio2/C++/)

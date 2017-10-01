@@ -49,7 +49,7 @@ int main(int argc, char **argv)
 	ros::NodeHandle n;
 	pwmOutput OUTPUT;
 	
-	ros::Subscriber sub = n.subscribe("rcSend", 1000, &pwmOutput::stabCallback, &OUTPUT);
+	ros::Subscriber sub = n.subscribe("stabOut", 1000, &pwmOutput::stabCallback, &OUTPUT);
 	
 	while(true)
 	{
