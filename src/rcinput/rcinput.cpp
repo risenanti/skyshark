@@ -9,7 +9,7 @@
 #include "Navio/RCInput.h"
 #include "Navio/Util.h"
 
-#define TESTING
+#define FLYING
 
 int main(int argc, char **argv)
 {
