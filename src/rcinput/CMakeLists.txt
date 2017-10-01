@@ -4,18 +4,13 @@ set (CMAKE_CXX_STANDARD 11)
 
 project(rcinput)
 
-find_package(catkin REQUIRED COMPONENTS roscpp rospy std_msgs geometry_msgs message_generation genmsg)
-
-add_message_files(
-  FILES
-  rcinputContainer.msg
-  VelocityControlTarget.msg
-)
+find_package(catkin REQUIRED COMPONENTS roscpp rospy std_msgs geometry_msgs message_generation genmsg skyshark_msgs)
 
 generate_messages(
    DEPENDENCIES
    std_msgs
    geometry_msgs
+   skyshark_msgs
 )
 
 catkin_package()

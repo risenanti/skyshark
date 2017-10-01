@@ -6,7 +6,7 @@
 
 // Message headers
 #include "geometry_msgs/Vector3.h"
-#include "rcinput/VelocityControlTarget.h"
+#include "skyshark_msgs/VelocityTarget.h"
 
 // Navio headers
 #include "Navio/RCInput.h"
@@ -27,7 +27,7 @@ void turnigyPublisher(ros::Publisher& publisher, RCInput rc) {
 	static int dYaw; // To maintain internal state, for integration
 	
 	// Create message object
-	rcinput::VelocityControlTarget message;
+	skyshark_msgs::VelocityTarget message;
 	
 	// Build the message
 	message.velocity = geometry_msgs::Vector3();
@@ -57,7 +57,7 @@ int main(int argc, char **argv) {
 	ros::Rate loop_rate(10);
 	
 	// Create publishers
-	ros::Publisher rcPublisher = n.advertise<rcinput::VelocityControlTarget>("velocityControl", 1000);
+	ros::Publisher rcPublisher = n.advertise<skyshark_msgs::VelocityTarget>("velocityTarget", 1000);
 
 	// Sensor objects
 	RCInput rc;
