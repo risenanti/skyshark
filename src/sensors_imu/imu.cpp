@@ -1,3 +1,7 @@
+// System headers
+#include <unistd.h>
+
+// ROS headers
 #include "ros/ros.h"
 
 // Message headers
@@ -10,7 +14,6 @@
 #include "Navio/MPU9250.h"
 #include "Navio/LSM9DS1.h"
 #include "Navio/Util.h"
-#include <unistd.h>
 
 void imuPublisher(ros::Publisher& publisher, InertialSensor* sensor) {
 	// Variables
@@ -79,7 +82,7 @@ void temperaturePublisher() {
 */
 
 int main(int argc, char **argv) {
-	// ROS Stuff
+	// ROS stuff
 	ros::init(argc, argv, "imuRaw");
 	ros::NodeHandle n;
 	ros::Rate loop_rate(100);
