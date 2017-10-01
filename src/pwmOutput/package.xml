@@ -1,0 +1,25 @@
+<package format="2">
+	<!-- Metadata -->
+	<name>pwmOutput</name>
+	<version>0.0.0</version>
+	<description>
+		writes values to motors via pwm
+	</description>
+	<maintainer email="risenanti@gmail.com">Keith Conley</maintainer>
+	<license>BSD</license>
+
+	<!-- Required by Catkin -->
+	<buildtool_depend>catkin</buildtool_depend>
+
+	<!-- Dependencies -->
+	<depend>roscpp</depend>
+	<depend>navio</depend>
+	<depend>std_msgs</depend>
+	<depend>sensor_msgs</depend>
+
+	<!-- Build Dependencies -->
+	<build_depend>message_generation</build_depend>
+
+	<!-- Run Dependencies -->
+	<exec_depend>message_runtime</exec_depend>
+</package>
