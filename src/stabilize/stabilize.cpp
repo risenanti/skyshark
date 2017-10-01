@@ -7,9 +7,14 @@
 #include <unistd.h>
 #include <math.h>
 
-#include "pid.h"
-#include "millis.h"
-#include "rcDef.h"
+#include "ros/ros.h"
+#include "std_msgs/MultiArrayLayout.h"
+#include "std_msgs/MultiArrayDimension.h"
+#include "std_msgs/Float32MultiArray.h"
+
+#include "stabHeaders/pid.h"
+#include "stabHeaders/millis.h"
+#include "stabHeaders/rcDef.h"
 
 #include "Navio/RCInput.h"
 #include "Navio/Util.h"
