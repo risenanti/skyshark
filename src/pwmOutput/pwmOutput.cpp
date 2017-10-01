@@ -29,7 +29,7 @@ class pwmOutput
 	
 	float stabOutput[4];
 
-}
+};
 
 void pwmOutput::stabCallback(const std_msgs::Float32MultiArray::ConstPtr& array)
 {
@@ -60,7 +60,7 @@ int main(int argc, char **argv)
 	return 0;
 }
 
-pwmOutput::init(void)
+void pwmOutput::init(void)
 {
 	motors.enable(MOTOR_FL);
 	motors.enable(MOTOR_FR);
@@ -78,7 +78,7 @@ pwmOutput::pwmOutput()
 	init();
 }
 
-pwmOutput::motorsOff(void)
+void pwmOutput::motorsOff(void)
 {
 	motors.set_duty_cycle(MOTOR_FL,1.000);
 	motors.set_duty_cycle(MOTOR_FR,1.000);
@@ -86,7 +86,7 @@ pwmOutput::motorsOff(void)
 	motors.set_duty_cycle(MOTOR_BR,1.000);
 }
 
-pwmOutput::writeMotors(void)
+void pwmOutput::writeMotors(void)
 {
 	motors.set_duty_cycle(MOTOR_FL, stabOutput[0]);
 	motors.set_duty_cycle(MOTOR_BL, stabOutput[1]);

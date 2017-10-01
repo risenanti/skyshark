@@ -14,8 +14,6 @@ include_directories(${CMAKE_SOURCE_DIR})
 include_directories(${roscpp_INCLUDE_DIRS})
 include_directories(include ${catkin_INCLUDE_DIRS})
 
-add_library(stab ${TARGET_SRC})
-
 add_executable(pwmOutput pwmOutput.cpp)
 target_link_libraries(pwmOutput navio)
 target_link_libraries(pwmOutput ${catkin_LIBRARIES})
