@@ -6,33 +6,24 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <math.h>
-
 #include "ros/ros.h"
 
-#include "std_msgs/Float32MultiArray.h"
-#include "geometry_msgs/Vector3.h"
-#include "skyshark_msgs/VelocityTarget.h"
+#include "stabHeaders/stabClass.h"
 
-#include "stabHeaders/pid.h"
-#include "stabHeaders/millis.h"
-#include "stabHeaders/rcDef.h"
-
-void chatterCallback(const skyshark_msgs::VelocityTarget &message)
-{
-	ROS_INFO("I heard: [%d]", message.velocity.z);
-}
 
 int main(int argc, char **argv)
 {
+	/*ROS INITIALIZATION*/
+	stabClass stabilize;
 	ros::init(argc, argv, "stabilizePID");
-	
-	ros::NodeHandle n;
-	
-	ros::Subscriber sub = n.subscribe("velocityTarget", 1000, chatterCallback);
+	ros::NodeHandle n,s;
+	ros::Subscriber sub  = n.subscribe("velocityTarget", 1000, &stabClass::rcCallback, &stabilize);
+	ros::Subscriber nSub = s.subscribe("mpuRaw", 1000, &stabClass::mpuCallback, &stabilize);
 	
 	while(1)
 	{
-		ros::spin();		
+		ros::spin();
+				
 	}
 	
 	

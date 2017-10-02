@@ -25,6 +25,7 @@ include_directories(include ${catkin_INCLUDE_DIRS})
 SET(TARGET_SRC
     ${CMAKE_SOURCE_DIR}/stabilize/stabHeaders/millis.cpp
     ${CMAKE_SOURCE_DIR}/stabilize/stabHeaders/pid.cpp
+${CMAKE_SOURCE_DIR}/stabilize/stabHeaders/stabClass.cpp
 )
 add_library(stabil ${TARGET_SRC})
 
