@@ -64,3 +64,47 @@ void stabClass::setStabVal(void)
 	pitch = gyroY*(double)180/M_PI;
 	yaw   = gyroZ*(double)180/M_PI; 
 }
+
+/*Compute the stab values loop*/
+void stabClass::computeStab(void)
+{
+	yaw_target = 0; 
+	mapRCval();
+	setStabVal();	
+	
+	if(rcthr > RC_THR_MIN + 100) 
+	{  // Throttle raised, turn on stablisation.
+		float pitch_stab_output = constrain(pitchStab.getPID((float)rcpit - pitch), -250, 250); 
+		float roll_stab_output = constrain(rollStab.getPID((float)rcroll - roll), -250, 250);
+		float yaw_stab_output = constrain(yawStab.getPID(wrap_180(yaw_target - yaw)), -360, 360);
+
+		//if pilot asking for yaw change feed directly to rate pid (overwriting yaw stab output)
+		//side note: cheating PID
+
+		if(abs(rcyaw ) > 5) {
+		  yaw_stab_output = rcyaw;
+		  yaw_target = yaw;   // remember this yaw for when pilot stops
+		}
+
+		// rate PIDS
+		long pitch_output =  (long) constrain(pitchRate.getPID(pitch_stab_output - pitch), - 500, 500);  
+		long roll_output =   (long) constrain(rollRate.getPID(roll_stab_output - roll), -500, 500);  
+		long yaw_output =    (long) constrain(yawRate.getPID(yaw_stab_output - yaw), -500, 500);  
+
+		rcOut1 = (rcthr + roll_output + pitch_output - yaw_output)/1000;
+		rcOut2 = (rcthr + roll_output - pitch_output + yaw_output)/1000;
+		rcOut3 = (rcthr - roll_output + pitch_output + yaw_output)/1000;
+		rcOut4 = (rcthr - roll_output - pitch_output - yaw_output)/1000;
+		}
+
+		else {
+			rcOut1 = 1.000; 
+			rcOut2 = 1.000;
+			rcOut3 = 1.000;
+			rcOut4 = 1.000;
+			yaw_target = yaw;
+			pitchRate.resetI();
+			yawRate.resetI();
+			rollRate.resetI();
+		}
+}

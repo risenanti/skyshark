@@ -16,6 +16,7 @@ class stabClass
 	
 	void mapRCval(void);
 	void setStabVal(void);
+	void computeStab(void);
 	
 	stabClass();
 	
@@ -31,6 +32,9 @@ class stabClass
 		
 	double yaw_target;
 	
+	/*velocity Outputs DO NOT LEAVE FIX THIS SHIT*/
+	float rcOut1, rcOut2, rcOut3, rcOut4;
+	
 	/*Create Rate PIDS*/
 	PID pitchRate;
 	PID rollRate;
@@ -41,5 +45,4 @@ class stabClass
 	PID rollStab;
 	PID yawStab;
 };
-
 #endif
