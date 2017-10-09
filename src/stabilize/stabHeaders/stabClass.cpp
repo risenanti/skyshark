@@ -17,6 +17,7 @@
 
 #include "stabClass.h"
 
+
 void stabClass::rcCallback(const skyshark_msgs::VelocityTarget &message)
 {
 	rcZ = message.velocity.z;
@@ -30,4 +31,36 @@ void stabClass::mpuCallback(const sensor_msgs::Imu &message)
 	gyroX = message.angular_velocity.x;
 	gyroY = message.angular_velocity.y;
 	gyroZ = message.angular_velocity.z;
+}
+
+stabClass::stabClass()
+{
+	/*SETUP PIDS*/
+	pitchRate.SetTunings(0.70, 1.00, 0.00);
+	pitchRate.setImax(50.00);
+	
+	rollRate.SetTunings(0.700, 1.00, 0.00);
+	rollRate.setImax(50);
+	
+	yawRate.SetTunings(2.70, 1.00, 0.00);
+	yawRate.setImax(50.00);
+	
+	yawStab.SetTunings(10.00, 0.00, 0.00);
+	
+	yaw_target = 0;
+}
+
+void stabClass::mapRCval(void)
+{
+	rcthr = rcZ;
+	rcyaw = map(rcYaw, RC_YAW_MIN, RC_YAW_MAX, -180, 180);
+	rcpit = map(rcX, RC_PIT_MIN, RC_PIT_MAX, -45, 45);
+	rcroll = map(rcY, RC_ROL_MIN, RC_ROL_MAX, -45, 45);
+}
+
+void stabClass::setStabVal(void)
+{
+	roll  = gyroX*(double)180/M_PI; //measured values inputs to PID converted from radians to degrees
+	pitch = gyroY*(double)180/M_PI;
+	yaw   = gyroZ*(double)180/M_PI; 
 }
