@@ -112,3 +112,20 @@ void stabClass::computeStab(void)
 			rollRate.resetI();
 		}
 }
+
+float stabClass::getRCout1()
+{
+	return rcOut1;
+}
+float stabClass::getRCout2()
+{
+	return rcOut2;
+}
+float stabClass::getRCout3()
+{
+	return rcOut3;
+}
+float stabClass::getRCout4()
+{
+	return rcOut4;
+}

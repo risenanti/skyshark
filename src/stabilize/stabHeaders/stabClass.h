@@ -18,6 +18,10 @@ class stabClass
 	void mapRCval(void);
 	void setStabVal(void);
 	void computeStab(void);
+	float getRCout1();
+	float getRCout2();
+	float getRCout3();
+	float getRCout4();
 	
 	stabClass();
 	
