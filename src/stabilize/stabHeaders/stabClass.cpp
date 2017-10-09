@@ -31,6 +31,9 @@ void stabClass::mpuCallback(const sensor_msgs::Imu &message)
 	gyroX = message.angular_velocity.x;
 	gyroY = message.angular_velocity.y;
 	gyroZ = message.angular_velocity.z;
+	
+	/*computing stabilization loop*/
+	computeStab();
 }
 
 stabClass::stabClass()

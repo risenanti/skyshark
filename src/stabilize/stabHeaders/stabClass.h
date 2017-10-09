@@ -7,6 +7,7 @@
 #include "skyshark_msgs/VelocityTarget.h"
 #include "sensor_msgs/Imu.h"
 #include "pid.h"
+#include "ros/ros.h"
 
 class stabClass
 {
