@@ -38,6 +38,7 @@ void stabClass::mpuCallback(const sensor_msgs::Imu &message)
 
 stabClass::stabClass()
 {
+	createMillisTimer();	
 	/*SETUP PIDS*/
 	pitchRate.SetTunings(0.70, 1.00, 0.00);
 	pitchRate.setImax(50.00);
