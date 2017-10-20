@@ -1,6 +1,6 @@
 <package format="2">
 	<!-- Metadata -->
-	<name>pwmOutput</name>
+	<name>pwm_output</name>
 	<version>0.0.0</version>
 	<description>
 		writes values to motors via pwm
@@ -16,6 +16,7 @@
 	<depend>navio</depend>
 	<depend>std_msgs</depend>
 	<depend>sensor_msgs</depend>
+	<depend>skyshark_msgs</depend>
 
 	<!-- Build Dependencies -->
 	<build_depend>message_generation</build_depend>
