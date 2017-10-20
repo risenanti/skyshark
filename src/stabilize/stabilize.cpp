@@ -33,33 +33,10 @@ int main(int argc, char **argv)
 	{
 		static int i = 0;
 		
-		//sendOutPWM.data.clear();
-		//sendOutPWM.rotor1 = stabilize.getRCout1();
-		//sendOutPWM.rotor2 = stabilize.getRCout2();
-		//sendOutPWM.data.push_back(stabilize.getRCout3());
-		//sendOutPWM.data.push_back(stabilize.getRCout4());
-		
-		if (i>500)
-		{
-			sendOutPWM.rotor1 = 1.500;
-			sendOutPWM.rotor2 = 1.500;
-			sendOutPWM.rotor3 = 1.500;
-			sendOutPWM.rotor4 = 1.500;
-			
-			if (i>800)
-			{
-				i = 0;
-			}
-		}
-		
-		else
-		
-		{
-			sendOutPWM.rotor1 = 1.200;
-			sendOutPWM.rotor2 = 1.200;
-			sendOutPWM.rotor3 = 1.200;
-			sendOutPWM.rotor4 = 1.200;
-		}
+		sendOutPWM.rotor1 = stabilize.getRCout1();
+		sendOutPWM.rotor2 = stabilize.getRCout2();
+		sendOutPWM.rotor3 = stabilize.getRCout3();
+		sendOutPWM.rotor4 = stabilize.getRCout4();
 		
 		pwmOut.publish(sendOutPWM);
 		ros::spinOnce();	

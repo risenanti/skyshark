@@ -25,7 +25,7 @@ class pwmOutput
 	void motorsOff(void);
 	void writeMotors(void);
 	void printStab(void);
-	void stabCallback(const skyshark_msgs::RotorSpeeds speed);
+	void stabCallback(const skyshark_msgs::RotorSpeeds &speed);
 	
 	private:
 	PWM motors;
@@ -34,7 +34,7 @@ class pwmOutput
 
 };
 
-void pwmOutput::stabCallback(const skyshark_msgs::RotorSpeeds speed)
+void pwmOutput::stabCallback(const skyshark_msgs::RotorSpeeds &speed)
 {
 	stabOutput[0] = speed.rotor1;
 	stabOutput[1] = speed.rotor2;
@@ -47,7 +47,7 @@ int main(int argc, char **argv)
 	ros::init(argc, argv, "pwmOutput");
 	ros::NodeHandle n;
 	
-	ros::Rate loop_rate(100); /*100 HZ*/
+	ros::Rate loop_rate(10); /*10 HZ*/
 	
 	pwmOutput OUTPUT;
 	
@@ -57,13 +57,13 @@ int main(int argc, char **argv)
     
     OUTPUT.init();
 	
-	ros::Subscriber sub = n.subscribe("stabOut", 1000, &pwmOutput::stabCallback, &OUTPUT);
+	ros::Subscriber sub = n.subscribe("stabOutput", 1000, &pwmOutput::stabCallback, &OUTPUT);
 	
 	while(true)
 	{
-		//OUTPUT.writeMotors();
-		OUTPUT.printStab();
+		//OUTPUT.printStab();
 		ros::spinOnce();
+		OUTPUT.writeMotors();
 		loop_rate.sleep();
 	}
 	
