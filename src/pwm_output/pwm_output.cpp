@@ -122,10 +122,10 @@ void pwmOutput::motorsOff(void)
 
 void pwmOutput::writeMotors(void)
 {
-	motors.set_duty_cycle(MOTOR_FL, 1.200);//stabOutput[0]);
-	motors.set_duty_cycle(MOTOR_BL, 1.200);//stabOutput[1]);
-	motors.set_duty_cycle(MOTOR_FR, 1.200);//stabOutput[2]);
-	motors.set_duty_cycle(MOTOR_BR, 1.200);//stabOutput[3]);
+	motors.set_duty_cycle(MOTOR_FL, stabOutput[0]);
+	motors.set_duty_cycle(MOTOR_BL, stabOutput[1]);
+	motors.set_duty_cycle(MOTOR_FR, stabOutput[2]);
+	motors.set_duty_cycle(MOTOR_BR, stabOutput[3]);
 }
 
 void pwmOutput::printStab(void)

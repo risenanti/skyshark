@@ -13,6 +13,7 @@ add_message_files(
   Position.msg
   Acceleration.msg
   RotorSpeeds.msg
+  frameAngle.msg
 )
 
 generate_messages(
