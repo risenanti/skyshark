@@ -14,6 +14,7 @@ add_message_files(
   Acceleration.msg
   RotorSpeeds.msg
   frameAngle.msg
+  StabTargets.msg
 )
 
 generate_messages(

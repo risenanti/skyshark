@@ -1,11 +1,11 @@
 // Radio min/max values for each stick for my radio (worked out at beginning of article)
-#define RC_THR_MIN   1070
-#define RC_YAW_MIN   1068
-#define RC_YAW_MAX   1915
-#define RC_PIT_MIN   1077
-#define RC_PIT_MAX   1915
-#define RC_ROL_MIN   1090
-#define RC_ROL_MAX   1913
+#define RC_THR_MIN   1.070
+#define RC_YAW_MIN   1.068
+#define RC_YAW_MAX   1.915
+#define RC_PIT_MIN   1.077
+#define RC_PIT_MAX   1.915
+#define RC_ROL_MIN   1.090
+#define RC_ROL_MAX   1.913
 
 // Motor numbers definitions
 #define MOTOR_FL   0    // Front left    
