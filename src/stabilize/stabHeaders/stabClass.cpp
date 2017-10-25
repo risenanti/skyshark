@@ -19,16 +19,16 @@ stabClass::stabClass()
 {
 	createMillisTimer();	
 	/*SETUP PIDS*/
-	pitchRate.SetTunings(0.70, 1.00, 0.00);
-	pitchRate.setImax(50.00);
+	pitchRate.SetTunings(0.007, 0.01, 0.00);
+	pitchRate.setImax(1.00);
 	
-	rollRate.SetTunings(0.700, 1.00, 0.00);
-	rollRate.setImax(50);
+	rollRate.SetTunings(0.007, 0.01, 0.00);
+	rollRate.setImax(1);
 	
-	yawRate.SetTunings(2.70, 1.00, 0.00);
-	yawRate.setImax(50.00);
+	yawRate.SetTunings(0.027, 0.01, 0.00);
+	yawRate.setImax(1.00);
 	
-	yawStab.SetTunings(10.00, 0.00, 0.00);
+	yawStab.SetTunings(0.010, 0.00, 0.00);
 	
 	yaw_target = 0;
 }
