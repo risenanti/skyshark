@@ -2,21 +2,19 @@
 #define stabClass_h
 
 #include "std_msgs/Header.h"
-#include "std_msgs/Float32MultiArray.h"
-#include "geometry_msgs/Vector3.h"
 #include "skyshark_msgs/VelocityTarget.h"
-#include "sensor_msgs/Imu.h"
+#include "skyshark_msgs/frameAngle.h" //angle of frame body
+#include "skyshark_msgs/StabTargets.h"//targets from rcInput
 #include "pid.h"
 #include "ros/ros.h"
 
 class stabClass
 {
 	public:
-	void rcCallback(const skyshark_msgs::VelocityTarget &message);
-	void mpuCallback(const sensor_msgs::Imu &message);
 	
-	void mapRCval(void);
-	void setStabVal(void);
+	void input_processingCallback(const skyshark_msgs::StabTargets &message);
+	void frame_angleCallback(const skyshark_msgs::frameAngle &message);
+	
 	void computeStab(void);
 	float getRCout1();
 	float getRCout2();
@@ -26,11 +24,7 @@ class stabClass
 	stabClass();
 	
 	private:
-	float rcX, rcY, rcZ, rcYaw;
-	float gyroX, gyroY, gyroZ;
-	
 	double rcthr, rcyaw, rcpit, rcroll;	
-	
 	double roll; //measured values inputs to PID
 	double pitch;
 	double yaw; 

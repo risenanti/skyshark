@@ -7,8 +7,6 @@
 #include <unistd.h>
 #include <math.h>
 #include "ros/ros.h"
-#include "std_msgs/Header.h"
-#include "std_msgs/Float32MultiArray.h"
 #include "skyshark_msgs/RotorSpeeds.h"
 
 #include "stabHeaders/stabClass.h"
@@ -20,8 +18,8 @@ int main(int argc, char **argv)
 	stabClass stabilize;
 	ros::init(argc, argv, "stabilizePID");
 	ros::NodeHandle n,s;
-	ros::Subscriber sub  = n.subscribe("velocityTarget", 1000, &stabClass::rcCallback, &stabilize);
-	ros::Subscriber nSub = s.subscribe("mpuRaw", 1000, &stabClass::mpuCallback, &stabilize);
+	ros::Subscriber sub  = n.subscribe("stabTarget", 1000, &stabClass::input_processingCallback, &stabilize);
+	ros::Subscriber nSub = s.subscribe("frame_angle", 1000, &stabClass::frame_angleCallback, &stabilize);
 	
 	/*publisher setup*/
 	skyshark_msgs::RotorSpeeds sendOutPWM;

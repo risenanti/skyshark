@@ -14,9 +14,12 @@
 	<!-- Dependencies -->
 	<depend>roscpp</depend>
 	<depend>navio</depend>
+	<depend>skyshark_msgs</depend>
+	<depend>input_processing</depend>
+	<depend>imu_filter</depend>
 	<depend>std_msgs</depend>
 	<depend>sensor_msgs</depend>
-	<depend>skyshark_msgs</depend>
+	
 	<!-- Build Dependencies -->
 	<build_depend>message_generation</build_depend>
 
