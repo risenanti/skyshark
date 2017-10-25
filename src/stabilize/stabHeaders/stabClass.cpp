@@ -53,7 +53,7 @@ void stabClass::computeStab(void)
 {
 	yaw_target = 0; 
 	
-	if(rcthr > RC_THR_MIN + 100) 
+	if(rcthr > RC_THR_MIN + 0.100) 
 	{  // Throttle raised, turn on stablisation.
 		float pitch_stab_output = constrain(pitchStab.getPID((float)rcpit - pitch), -0.250, 0.250); 
 		float roll_stab_output = constrain(rollStab.getPID((float)rcroll - roll), -0.250, 0.250);

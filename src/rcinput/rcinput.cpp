@@ -54,7 +54,7 @@ int main(int argc, char **argv) {
 	// ROS stuff
 	ros::init(argc, argv, "rcinputRaw");
 	ros::NodeHandle n;
-	ros::Rate loop_rate(10);
+	ros::Rate loop_rate(500);
 	
 	// Create publishers
 	ros::Publisher rcPublisher = n.advertise<skyshark_msgs::VelocityTarget>("velocityTarget", 1000);

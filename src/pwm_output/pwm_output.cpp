@@ -47,7 +47,7 @@ int main(int argc, char **argv)
 	ros::init(argc, argv, "pwmOutput");
 	ros::NodeHandle n;
 	
-	ros::Rate loop_rate(10); /*10 HZ*/
+	ros::Rate loop_rate(500); /*500 HZ*/
 	
 	pwmOutput OUTPUT;
 	

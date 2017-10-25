@@ -9,13 +9,14 @@
 #include "skyshark_msgs/VelocityTarget.h"
 #include "skyshark_msgs/StabTargets.h"
  
-#define RC_THR_MIN   1.070
-#define RC_YAW_MIN   1.068
-#define RC_YAW_MAX   1.915
-#define RC_PIT_MIN   1.077
-#define RC_PIT_MAX   1.915
-#define RC_ROL_MIN   1.090
-#define RC_ROL_MAX   1.913
+#define RC_THR_MIN   968
+#define RC_THR_MAX   2050
+#define RC_YAW_MIN   1068
+#define RC_YAW_MAX   1915
+#define RC_PIT_MIN   968
+#define RC_PIT_MAX   2060
+#define RC_ROL_MIN   970
+#define RC_ROL_MAX   2062
 
 float map(float x, float in_min, float in_max, float out_min, float out_max)
 {
@@ -45,13 +46,13 @@ double constrain(double x, double a, double b)
 	
 	targets.rollTarget = map(rcRoll, RC_ROL_MIN, RC_ROL_MAX, -45, 45);
 	targets.pitchTarget = map(rcPitch, RC_PIT_MIN, RC_PIT_MAX, -45, 45);
-	targets.yawTarget= map(rcYaw, RC_YAW_MIN, RC_YAW_MAX, -180, 180);
-	targets.throttleMag = rcThrottle;
+	targets.yawTarget= 0.00;//map(rcYaw, RC_YAW_MIN, RC_YAW_MAX, -180, 180);
+	targets.throttleMag = rcThrottle/1000;
  }
 
 int main(int argc, char **argv) {
 	// ROS stuff
-	ros::init(argc, argv, "rcinputRaw");
+	ros::init(argc, argv, "input_processing_node");
 	ros::NodeHandle n, s;
 	ros::Rate loop_rate(500);
 	

@@ -28,18 +28,18 @@ int main(int argc, char **argv)
 	ros::Publisher pwmOut = z.advertise<skyshark_msgs::RotorSpeeds>("stabOutput", 1000);
 	
 	while(1)
-	{
-		static int i = 0;
-		
+	{	
+		ros::spinOnce();	
+		loop_rate.sleep();
+
+
+		stabilize.computeStab();
 		sendOutPWM.rotor1 = stabilize.getRCout1();
 		sendOutPWM.rotor2 = stabilize.getRCout2();
 		sendOutPWM.rotor3 = stabilize.getRCout3();
 		sendOutPWM.rotor4 = stabilize.getRCout4();
 		
 		pwmOut.publish(sendOutPWM);
-		ros::spinOnce();	
-		loop_rate.sleep();	
-		i++;
 	}
 	
 	
