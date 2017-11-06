@@ -13,7 +13,7 @@ generate_messages(
    skyshark_msgs
 )
 
-catkin_package()
+catkin_package(CATKIN_DEPENDS message_runtime std_msgs geometry_msgs skyshark_msgs)
 
 include_directories(${CMAKE_SOURCE_DIR})
 include_directories(${roscpp_INCLUDE_DIRS})
@@ -23,3 +23,4 @@ include_directories(${CMAKE_SOURCE_DIR}/../externals/Navio2/C++/)
 add_executable(rcinput rcinput.cpp)
 target_link_libraries(rcinput navio)
 target_link_libraries(rcinput ${catkin_LIBRARIES})
+add_dependencies(rcinput ${catkin_EXPORTED_TARGETS})

@@ -13,13 +13,11 @@
 
 	<!-- Dependencies -->
 	<depend>roscpp</depend>
-	<depend>navio</depend>
 	<depend>std_msgs</depend>
 	<depend>sensor_msgs</depend>
 	<depend>skyshark_msgs</depend>
 	<!-- Build Dependencies -->
 	<build_depend>message_generation</build_depend>
-
 	<!-- Run Dependencies -->
 	<exec_depend>message_runtime</exec_depend>
 </package>

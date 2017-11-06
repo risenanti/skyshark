@@ -7,6 +7,7 @@ project(skyshark_msgs)
 find_package(catkin REQUIRED COMPONENTS roscpp rospy std_msgs geometry_msgs message_generation genmsg)
 
 add_message_files(
+  DIRECTORY msg
   FILES
   VelocityTarget.msg
   Velocity.msg
@@ -23,4 +24,8 @@ generate_messages(
    geometry_msgs
 )
 
-catkin_package()
+catkin_package(CATKIN_DEPENDS message_runtime std_msgs geometry_msgs)
+
+include_directories(
+  ${catkin_INCLUDE_DIRS}
+)

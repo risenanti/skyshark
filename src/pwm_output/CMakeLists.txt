@@ -16,4 +16,5 @@ include_directories(include ${catkin_INCLUDE_DIRS})
 add_executable(pwm_output pwm_output.cpp)
 target_link_libraries(pwm_output navio)
 target_link_libraries(pwm_output ${catkin_LIBRARIES})
+add_dependencies(pwm_output ${catkin_EXPORTED_TARGETS})
 

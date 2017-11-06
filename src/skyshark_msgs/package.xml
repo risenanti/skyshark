@@ -14,8 +14,9 @@
 	<!-- Dependencies -->
 	<depend>roscpp</depend>
 	<depend>std_msgs</depend>
+	<depend>geometry_msgs</depend>
 	<depend>sensor_msgs</depend>
-
+	
 	<!-- Build Dependencies -->
 	<build_depend>message_generation</build_depend>
 
