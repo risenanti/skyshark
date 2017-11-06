@@ -1,65 +1,78 @@
-#include <stdio.h>
-#include <stdlib.h>
+// System headers
+#include <iostream>
+
+// ROS headers
 #include "ros/ros.h"
 
-/*add rcinput struct*/
-#include "rcinput/rcinputContainer.h"
+// Message headers
+#include "geometry_msgs/Vector3.h"
+#include "skyshark_msgs/VelocityTarget.h"
 
-/*Navio Drivers*/
+// Navio headers
 #include "Navio/RCInput.h"
 #include "Navio/Util.h"
 
-#define TESTING
+/* Turnigy 9XR Bindings
+ * 
+ * 		Channels:
+ * 			0 | Left stick vertical			| z
+ * 			1 | Right stick horizontal		| y
+ * 			2 | Right stick vertical		| x
+ * 			3 | Left stick horizontal		| yaw
+ * 
+ */
+void turnigyPublisher(ros::Publisher& publisher, RCInput rc) {
+	// Variables
+	int x, y, z;
+	static int dYaw; // To maintain internal state, for integration
+	
+	// Create message object
+	skyshark_msgs::VelocityTarget message;
+	
+	// Build the message
+	message.velocity = geometry_msgs::Vector3();
 
-int main(int argc, char **argv)
-{
-  ros::init(argc, argv, "rcinputRaw");
-  ros::NodeHandle n;
-  ros::Publisher pub = n.advertise<rcinput::rcinputContainer>("rcinputRaw", 1000);
-  ros::Rate loop_rate(10); /*10 HZ*/
-  
-	  #ifdef FLYING
-	  RCInput rcin;
+	// Read controller data
+	// TODO: Add raw controller input somewhere in here
+	// TODO: Convert to [-1.0, +1.0] values
+	x = rc.read(2);
+	y = rc.read(1);
+	z = rc.read(0);
+	dYaw = rc.read(3);
+	
+	// Put data in message
+	message.velocity.x = x;
+	message.velocity.y = y;
+	message.velocity.z = z;
+	//message.yaw = yaw;
 
-	  if(check_apm()) { return 1;}
+	// Publish message
+	publisher.publish(message);
+}
 
-	  rcin.init();
-	  #endif
+int main(int argc, char **argv) {
+	// ROS stuff
+	ros::init(argc, argv, "rcinputRaw");
+	ros::NodeHandle n;
+	ros::Rate loop_rate(500);
+	
+	// Create publishers
+	ros::Publisher rcPublisher = n.advertise<skyshark_msgs::VelocityTarget>("velocityTarget", 1000);
 
-  while (ros::ok())
-  {
+	// Sensor objects
+	RCInput rc;
+	rc.init();
 
-    rcinput::rcinputContainer msg;
+	while(ros::ok()) {
+		// Controller
+		turnigyPublisher(rcPublisher, rc);
+		
+		// Other ROS maintenance things
+		ros::spinOnce();
+		loop_rate.sleep();
+	}
 
-
-    #ifdef FLYING
-    /*array element 0 left stick up and down*/
-    volatile int rawInput1 = rcin.read(0);
-    
-    /*Array element 1 is direction and 2 is magnitude Right stick Side to Side */
-    volatile int rawInput2 = rcin.read(1);
-    
-    /*Array Element 3 is direction and 4 is magnitude Right Stick Up and Down*/
-    volatile int rawInput3 = rcin.read(2);
-    
-    /*Array Element 5 is direction and 6 is magnitude Left Stick Side to Side*/
-    volatile int rawInput4 = rcin.read(3);
-    #endif
-    
-		#ifdef TESTING
-		msg.input1 = rand()%2000+1000;
-		msg.input2 = rand()%2000+1000;
-		msg.input3 = rand()%2000+1000;
-		msg.input4 = rand()%2000+1000;
-		#endif
-
-    pub.publish(msg);
-    ros::spinOnce();
-    loop_rate.sleep();
-  }
-
-
-  return 0;
+	return 0;
 }
 
 

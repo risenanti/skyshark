@@ -1,0 +1,35 @@
+rcinput:
+	Outputs:
+		VelocityTarget	/velocityTarget
+
+
+sensors_imu:
+	Outputs:
+		Imu				/mpuRaw
+		Imu				/lsmRaw
+
+
+Localization:
+	Inputs:
+		Imu				/mpuRaw
+		Imu				/lsmRaw
+	Outputs:
+		Position		/position
+		Velocity		/velocity
+		Acceleration	/acceleration
+
+
+Flight Model:
+	Inputs:
+		VelocityTarget	/velocityTarget
+		Position		/position
+		Velocity		/velocity
+		Acceleration	/acceleration
+		RotorSpeeds		[internal]
+	Outputs:
+		RotorSpeeds		/rotorSpeeds
+
+
+PWM Driver:
+	Inputs:
+		RotorSpeeds		/rotorSpeeds

@@ -1,9 +1,9 @@
 <package format="2">
 	<!-- Metadata -->
-	<name>rcinput</name>
+	<name>input_processing</name>
 	<version>0.0.0</version>
 	<description>
-		Accepts raw input from rc controller and begins to process it.
+		Takes in input and processes it to target angle.
 	</description>
 	<maintainer email="risenanti@gmail.com">Keith Conley</maintainer>
 	<license>BSD</license>
@@ -13,11 +13,10 @@
 
 	<!-- Dependencies -->
 	<depend>roscpp</depend>
-	<depend>navio</depend>
-	<depend>std_msgs</depend>
-	<depend>geometry_msgs</depend>
 	<depend>sensor_msgs</depend>
 	<depend>skyshark_msgs</depend>
+	<depend>navio</depend>
+	<depend>std_msgs</depend>
 	<!-- Build Dependencies -->
 	<build_depend>message_generation</build_depend>
 

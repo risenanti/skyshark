@@ -1,11 +1,11 @@
 <package format="2">
 	<!-- Metadata -->
-	<name>rcinput</name>
+	<name>sensors_imu</name>
 	<version>0.0.0</version>
 	<description>
-		Accepts raw input from rc controller and begins to process it.
+		Gets raw data from imu
 	</description>
-	<maintainer email="risenanti@gmail.com">Keith Conley</maintainer>
+	<maintainer email="mlaga97@gmail.com">Luc Lagarde</maintainer>
 	<license>BSD</license>
 
 	<!-- Required by Catkin -->
@@ -14,10 +14,7 @@
 	<!-- Dependencies -->
 	<depend>roscpp</depend>
 	<depend>navio</depend>
-	<depend>std_msgs</depend>
-	<depend>geometry_msgs</depend>
-	<depend>sensor_msgs</depend>
-	<depend>skyshark_msgs</depend>
+
 	<!-- Build Dependencies -->
 	<build_depend>message_generation</build_depend>
 
