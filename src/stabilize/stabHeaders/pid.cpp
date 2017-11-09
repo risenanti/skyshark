@@ -1,13 +1,10 @@
 #include "pid.h"
-#include "millis.h"
 
 #define timeChange 0.002 
 
 double PID::getPID(double error)
 {
 	double output;
-	//unsigned long now = millis();
-	//double timeChange = (double)(now-lastTime);
 	
 	kpTerm = kp*error;
 	
@@ -28,7 +25,6 @@ double PID::getPID(double error)
 	output = kpTerm+kiTerm+kdTerm;
 	
 	lastErr = error;
-	//lastTime = now;
 	
 	return output;
 }

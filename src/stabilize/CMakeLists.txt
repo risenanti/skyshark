@@ -22,7 +22,6 @@ include_directories(include ${catkin_INCLUDE_DIRS})
 
 # Local source files here
 SET(TARGET_SRC
-    ${CMAKE_SOURCE_DIR}/stabilize/stabHeaders/millis.cpp
     ${CMAKE_SOURCE_DIR}/stabilize/stabHeaders/pid.cpp
 ${CMAKE_SOURCE_DIR}/stabilize/stabHeaders/stabClass.cpp
 )
@@ -32,3 +31,4 @@ add_executable(stabilize stabilize.cpp)
 target_link_libraries(stabilize navio)
 target_link_libraries(stabilize stabil)
 target_link_libraries(stabilize ${catkin_LIBRARIES})
+add_dependencies(stabilize ${catkin_EXPORTED_TARGETS})
