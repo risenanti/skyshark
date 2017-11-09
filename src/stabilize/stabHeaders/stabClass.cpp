@@ -9,15 +9,13 @@
 #include "skyshark_msgs/StabTargets.h"//targets from rcInput
 
 #include "pid.h"
-#include "millis.h"
 #include "rcDef.h"
 
 #include "stabClass.h"
 
 
 stabClass::stabClass()
-{
-	createMillisTimer();	
+{	
 	/*SETUP PIDS*/
 	pitchRate.SetTunings(0.007, 0.01, 0.00);
 	pitchRate.setImax(1.00);
