@@ -1,3 +1,6 @@
+/*Copyright Jackal Robotics LLC*/
+/*Keith Conley 2017*/
+
 // System headers
 #include <unistd.h>
 
@@ -116,4 +119,5 @@ int main(int argc, char **argv) {
 	return 0;
 }
 
-
+/*Copyright Jackal Robotics LLC*/
+/*Keith Conley 2017*/

@@ -1,3 +1,6 @@
+/*Copyright Jackal Robotics LLC*/
+/*Keith Conley 2017*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -132,3 +135,6 @@ void pwmOutput::printStab(void)
 {
 	printf("%f %f %f %f \n", stabOutput[0], stabOutput[1], stabOutput[2], stabOutput[3]);
 }
+
+/*Copyright Jackal Robotics LLC*/
+/*Keith Conley 2017*/

@@ -1,7 +1,5 @@
-/*KEITH CONLEY
-**USM
-**FALL 2018
-*/
+/*Copyright Jackal Robotics LLC*/
+/*Keith Conley 2017*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -45,3 +43,5 @@ int main(int argc, char **argv)
 	
 	return 0;
 }
+/*Copyright Jackal Robotics LLC*/
+/*Keith Conley 2017*/

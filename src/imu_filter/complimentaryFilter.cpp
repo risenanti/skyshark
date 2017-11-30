@@ -1,3 +1,6 @@
+/*Copyright Jackal Robotics LLC*/
+/*Keith Conley 2017*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -124,3 +127,6 @@ void complimentaryFilter::mpuCallback(const sensor_msgs::Imu &message)
 	mpuRaw.linear_acceleration.y = message.linear_acceleration.y;
 	mpuRaw.linear_acceleration.z = message.linear_acceleration.z;
 }
+
+/*Copyright Jackal Robotics LLC*/
+/*Keith Conley 2017*/

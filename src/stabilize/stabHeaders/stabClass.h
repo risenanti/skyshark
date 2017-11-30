@@ -1,3 +1,6 @@
+/*Copyright Jackal Robotics LLC*/
+/*Keith Conley 2017*/
+
 #ifndef stabClass_h
 #define stabClass_h
 
@@ -45,3 +48,6 @@ class stabClass
 	PID yawStab;
 };
 #endif
+
+/*Copyright Jackal Robotics LLC*/
+/*Keith Conley 2017*/

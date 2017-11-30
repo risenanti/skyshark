@@ -1,3 +1,6 @@
+/*Copyright Jackal Robotics LLC*/
+/*Keith Conley 2017*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -104,3 +107,6 @@ float stabClass::getRCout4()
 {
 	return rcOut4;
 }
+
+/*Copyright Jackal Robotics LLC*/
+/*Keith Conley 2017*/
