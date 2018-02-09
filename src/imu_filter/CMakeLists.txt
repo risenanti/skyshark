@@ -17,25 +17,23 @@ generate_messages(
 )
 
 catkin_package()
-include_directories(${CMAKE_SOURCE_DIR}/../externals/Navio2/C++/)
 
+include_directories(${CMAKE_SOURCE_DIR}/../externals/Navio2/C++/)
 include_directories(${CMAKE_SOURCE_DIR})
 include_directories(${roscpp_INCLUDE_DIRS})
 include_directories(include ${catkin_INCLUDE_DIRS})
 
-# Local source files here
-#SET(TARGET_SRC
-#    ${CMAKE_SOURCE_DIR}/stabilize/stabHeaders/millis.cpp
-#    ${CMAKE_SOURCE_DIR}/stabilize/stabHeaders/pid.cpp
-#${CMAKE_SOURCE_DIR}/stabilize/stabHeaders/stabClass.cpp
-#)
-#add_library(stabil ${TARGET_SRC})
+SET(TARGET_SRC
+    ${CMAKE_SOURCE_DIR}/imu_filter/filters/madgwick_filter.cpp
+)
+add_library(madgwick ${TARGET_SRC})
 
-add_executable(imu_filter complimentaryFilter.cpp)
+add_executable(imu_filter compute_orientation.cpp)
 target_link_libraries(imu_filter navio)
-#target_link_libraries(stabilize stabil)
+target_link_libraries(imu_filter madgwick)
 target_link_libraries(imu_filter ${catkin_LIBRARIES})
 add_dependencies(imu_filter ${catkin_EXPORTED_TARGETS})
 
+=======
 #Copyright Jackal Robotics###############################################
 #Keith Conley 2017        ###############################################
