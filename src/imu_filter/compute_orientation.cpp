@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <math.h>
-#include "madgwick_filter.h"
+#include "filters/madgwick_filter.h"
 
 #include "ros/ros.h"
 #include "std_msgs/Header.h"
@@ -23,9 +23,9 @@ class compute_orientation
 	void frameAngleCompute(void);
 	
 	/*getters*/
-	float getRoll(void);
-	float getPitch(void);
-	float getYaw(void);
+	float getCompRoll(void);
+	float getCompPitch(void);
+	float getCompYaw(void);
 	
 	private:
 	sensor_msgs::Imu mpuRaw;
@@ -43,7 +43,7 @@ class compute_orientation
 	//yaw is z
 	float yawGyro;
 	float yawAccel;
-}
+};
 
 int main(int argc, char **argv)
 {
@@ -52,7 +52,7 @@ int main(int argc, char **argv)
 	
 	ros::NodeHandle n;
 	ros::Rate loop_rate(500); /*500 HZ*/
-	ros::Subscriber nSub = n.subscribe("mpuRaw", 1000, &compute_orientation::mpuCallback, &filter);
+	ros::Subscriber nSub = n.subscribe("mpuRaw", 1000, &compute_orientation::mpuCallback, &orientation);
 	
 	ros::NodeHandle z;
 	ros::Publisher frameAngleOut = z.advertise<skyshark_msgs::frameAngle>("frame_angle",1000);
@@ -63,9 +63,9 @@ int main(int argc, char **argv)
 		ros::spinOnce();
 		orientation.frameAngleCompute();
 		
-		angle.rollAngle = orientation.getRoll();
-		angle.pitchAngle = orientation.getPitch();
-		angle.yawAngle = orientation.getYaw();
+		angle.rollAngle  = orientation.getCompRoll();
+		angle.pitchAngle = orientation.getCompPitch();
+		angle.yawAngle   = orientation.getCompYaw();
 		
 		frameAngleOut.publish(angle);
 			
@@ -114,15 +114,15 @@ void compute_orientation::mpuCallback(const sensor_msgs::Imu &message)
 }
 
 	/*getters*/
-float compute_orientation::getRoll(void)
+float compute_orientation::getCompRoll(void)
 {
 	return roll;
 }
-float compute_orientation::getPitch(void)
+float compute_orientation::getCompPitch(void)
 {
 	return pitch;
 }
-float compute_orientation::getYaw(void)
+float compute_orientation::getCompYaw(void)
 {
 	return yaw;
 }

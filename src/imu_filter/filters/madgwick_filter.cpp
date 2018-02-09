@@ -248,3 +248,18 @@ void Madgwick::computeAngles()
 	yaw = atan2f(q1*q2 + q0*q3, 0.5f - q2*q2 - q3*q3);
 	anglesComputed = 1;
 }
+
+float Madgwick::getRoll() {
+        if (!anglesComputed) computeAngles();
+        return roll * 57.29578f;
+    }
+
+float Madgwick::getPitch() {
+        if (!anglesComputed) computeAngles();
+        return pitch * 57.29578f;
+    }
+    
+float Madgwick::getYaw() {
+        if (!anglesComputed) computeAngles();
+        return yaw * 57.29578f + 180.0f;
+    }
