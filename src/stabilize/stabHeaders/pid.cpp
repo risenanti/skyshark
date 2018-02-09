@@ -1,3 +1,5 @@
+/*Copyright Jackal Robotics LLC*/
+/*Keith Conley 2017*/
 #include "pid.h"
 
 #define timeChange 0.002 
@@ -70,3 +72,6 @@ void PID::setImax(double imax)
 {
 	iMax = imax;
 }
+
+/*Copyright Jackal Robotics LLC*/
+/*Keith Conley 2017*/

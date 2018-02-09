@@ -1,10 +1,5 @@
-//***************************************************************
-//* Arduino PID Library - Version 1.2.1
-//* by Brett Beauregard <br3ttb@gmail.com> brettbeauregard.com
-//*
-//* This Library is licensed under the MIT License
-//***************************************************************
-
+/*Copyright Jackal Robotics LLC*/
+/*Keith Conley 2017*/
 
 #ifndef pid_h
 #define pid_h
@@ -33,7 +28,5 @@ class PID
 #endif
 
 
-//set kp ki kd
-//set imax
-//reset i
-//compute based on error input
+/*Copyright Jackal Robotics LLC*/
+/*Keith Conley 2017*/

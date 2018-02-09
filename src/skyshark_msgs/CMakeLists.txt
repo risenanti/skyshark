@@ -1,3 +1,6 @@
+#Copyright Jackal Robotics###############################################
+#Keith Conley 2017        ###############################################
+
 cmake_minimum_required(VERSION 2.8)
 
 set (CMAKE_CXX_STANDARD 11)
@@ -29,3 +32,6 @@ catkin_package(CATKIN_DEPENDS message_runtime std_msgs geometry_msgs)
 include_directories(
   ${catkin_INCLUDE_DIRS}
 )
+
+#Copyright Jackal Robotics###############################################
+#Keith Conley 2017        ###############################################

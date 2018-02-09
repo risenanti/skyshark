@@ -1,3 +1,6 @@
+/*Copyright Jackal Robotics LLC*/
+/*Keith Conley 2017*/
+
 // Radio min/max values for each stick for my radio (worked out at beginning of article)
 #define RC_THR_MIN   1.070
 #define RC_YAW_MIN   1.068
@@ -32,3 +35,6 @@ double constrain(double x, double a, double b) {
 
 
 #define wrap_180(x) (x < -180 ? x+360 : (x > 180 ? x - 360: x))
+
+/*Copyright Jackal Robotics LLC*/
+/*Keith Conley 2017*/

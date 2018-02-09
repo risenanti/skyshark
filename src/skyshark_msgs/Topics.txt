@@ -1,3 +1,6 @@
+#Copyright Jackal Robotics###############################################
+#Keith Conley 2017        ###############################################
+
 rcinput:
 	Outputs:
 		VelocityTarget	/velocityTarget
@@ -33,3 +36,6 @@ Flight Model:
 PWM Driver:
 	Inputs:
 		RotorSpeeds		/rotorSpeeds
+
+#Copyright Jackal Robotics###############################################
+#Keith Conley 2017        ###############################################

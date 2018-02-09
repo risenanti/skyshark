@@ -1,3 +1,6 @@
+#Copyright Jackal Robotics###############################################
+#Keith Conley 2017        ###############################################
+
 #!/usr/bin/python
 
 # System Imports
@@ -72,3 +75,6 @@ if __name__ == '__main__':
 		publishBarometerData()
 	except rospy.ROSInterruptException:
 		pass
+
+#Copyright Jackal Robotics###############################################
+#Keith Conley 2017        ###############################################

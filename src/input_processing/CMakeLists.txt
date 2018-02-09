@@ -1,3 +1,6 @@
+#Copyright Jackal Robotics###############################################
+#Keith Conley 2017        ###############################################
+
 cmake_minimum_required(VERSION 2.8)
 
 set (CMAKE_CXX_STANDARD 11)
@@ -24,3 +27,6 @@ add_executable(input_processing input_processing.cpp)
 target_link_libraries(input_processing navio)
 target_link_libraries(input_processing ${catkin_LIBRARIES})
 add_dependencies(input_processing ${catkin_EXPORTED_TARGETS})
+
+#Copyright Jackal Robotics###############################################
+#Keith Conley 2017        ###############################################

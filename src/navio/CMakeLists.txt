@@ -1,3 +1,6 @@
+#Copyright Jackal Robotics###############################################
+#Keith Conley 2017        ###############################################
+
 cmake_minimum_required(VERSION 2.8)
 
 set (CMAKE_CXX_STANDARD 11)
@@ -24,3 +27,6 @@ SET(TARGET_SRC
 include_directories(${CMAKE_SOURCE_DIR}/../externals/Navio2/C++/)
 
 add_library(navio ${TARGET_SRC})
+
+#Copyright Jackal Robotics###############################################
+#Keith Conley 2017        ###############################################

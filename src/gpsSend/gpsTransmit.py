@@ -1,3 +1,5 @@
+#Copyright Jackal Robotics LLC##################################################################
+#	Keith Conley 2017  #####################################################################
 import sys
 
 sys.path.insert(0,"/home/pi/skyshark/Navio2/Python")
@@ -68,3 +70,7 @@ if __name__ == "__main__":
             response = conn.getresponse()
 #            print (response.status, response.reason)
             conn.close()
+
+
+#Copyright Jackal Robotics LLC##################################################################
+#	Keith Conley 2017  #####################################################################

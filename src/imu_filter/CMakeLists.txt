@@ -1,3 +1,6 @@
+#Copyright Jackal Robotics###############################################
+#Keith Conley 2017        ###############################################
+
 cmake_minimum_required(VERSION 2.8)
 
 set (CMAKE_CXX_STANDARD 11)
@@ -31,3 +34,6 @@ target_link_libraries(imu_filter madgwick)
 target_link_libraries(imu_filter ${catkin_LIBRARIES})
 add_dependencies(imu_filter ${catkin_EXPORTED_TARGETS})
 
+=======
+#Copyright Jackal Robotics###############################################
+#Keith Conley 2017        ###############################################
