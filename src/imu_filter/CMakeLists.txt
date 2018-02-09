@@ -34,6 +34,6 @@ target_link_libraries(imu_filter madgwick)
 target_link_libraries(imu_filter ${catkin_LIBRARIES})
 add_dependencies(imu_filter ${catkin_EXPORTED_TARGETS})
 
-=======
+
 #Copyright Jackal Robotics###############################################
 #Keith Conley 2017        ###############################################
