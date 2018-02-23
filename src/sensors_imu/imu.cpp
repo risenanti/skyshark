@@ -10,6 +10,7 @@
 // Message headers
 #include "std_msgs/Header.h"
 #include "sensor_msgs/Imu.h"
+#include "sensor_msgs/MagneticField.h"
 #include "geometry_msgs/Vector3.h"
 #include "geometry_msgs/Quaternion.h"
 
@@ -59,6 +60,23 @@ void imuPublisher(ros::Publisher& publisher, InertialSensor* sensor) {
 	publisher.publish(message);
 }
 
+void compassPublisher(ros::Publisher& publisher, InertialSensor* sensor) {
+	float mx, my, mz;
+	sensor_msgs::MagneticField message;
+	
+	message.header = std_msgs::Header();
+	message.header.stamp = ros::Time::now();
+	message.magnetic_field_covariance = {0, 0, 0, 0, 0, 0, 0, 0, 0};
+	
+	sensor->read_magnetometer(&mx, &my, &mz);
+	
+	message.magnetic_field.x = mx;
+	message.magnetic_field.y = my;
+	message.magnetic_field.z = mz;
+	
+	publisher.publish(message);
+}
+
 /*
 void compassPublisher(ros::Publisher& publisher, InertialSensor* sensor) {
 	// Variables
@@ -92,7 +110,9 @@ int main(int argc, char **argv) {
 
 	// Create publishers
 	ros::Publisher mpuPublisher = n.advertise<sensor_msgs::Imu>("mpuRaw", 1000);
+	ros::Publisher mpuCompass   = n.advertise<sensor_msgs::MagneticField>("mpuCompass", 1000);
 	ros::Publisher lsmPublisher = n.advertise<sensor_msgs::Imu>("lsmRaw", 1000);
+	ros::Publisher lsmCompass   = n.advertise<sensor_msgs::MagneticField>("lsmCompass", 1000);
 	
 	// Sensor objects
 	InertialSensor *mpu = new MPU9250();
@@ -106,10 +126,12 @@ int main(int argc, char **argv) {
 		// MPU9250
 		mpu->update();
 		imuPublisher(mpuPublisher, mpu);
+		compassPublisher(mpuCompass, mpu);
 		
 		// LSM9DS1
 		lsm->update();
 		imuPublisher(lsmPublisher, lsm);
+		compassPublisher(lsmCompass, lsm);
 		
 		// Other ROS maintenance things
 		ros::spinOnce();
