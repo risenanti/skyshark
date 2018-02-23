@@ -7,6 +7,7 @@
 #include "ros/ros.h"
 #include "std_msgs/Header.h"
 #include "sensor_msgs/Imu.h"
+#include "sensor_msgs/MagneticField.h"
 #include "skyshark_msgs/frameAngle.h"
 
 #define degConvert 57.2957786
@@ -15,6 +16,7 @@ class compute_orientation
 {
 	public:
 	void mpuCallback(const sensor_msgs::Imu &message);
+	void mpuCompassCallback(const sensor_msgs::MagneticField &message);
 	
 	/*set data as needed*/
 	void processInputs(void);
@@ -30,6 +32,8 @@ class compute_orientation
 	private:
 	sensor_msgs::Imu mpuRaw;
 	skyshark_msgs::frameAngle angle;
+	sensor_msgs::MagneticField compassData;
+	
 	Madgwick filter;
 	
 	float roll, pitch, yaw;
@@ -43,6 +47,8 @@ class compute_orientation
 	//yaw is z
 	float yawGyro;
 	float yawAccel;
+	
+	float mx, my, mz;
 };
 
 int main(int argc, char **argv)
@@ -53,6 +59,7 @@ int main(int argc, char **argv)
 	ros::NodeHandle n;
 	ros::Rate loop_rate(500); /*500 HZ*/
 	ros::Subscriber nSub = n.subscribe("mpuRaw", 1000, &compute_orientation::mpuCallback, &orientation);
+	ros::Subscriber compSub = n.subscribe("mpuCompass", 1000, &compute_orientation::mpuCompassCallback, &orientation);
 	
 	ros::NodeHandle z;
 	ros::Publisher frameAngleOut = z.advertise<skyshark_msgs::frameAngle>("frame_angle",1000);
@@ -80,7 +87,7 @@ void compute_orientation::frameAngleCompute(void)
 {
 	//implement Madgwick filter here
 	processInputs();
-	filter.updateIMU(rollGyro, pitchGyro, yawGyro, rollAccel, pitchAccel, yawAccel);
+	filter.update(rollGyro, pitchGyro, yawGyro, rollAccel, pitchAccel, yawAccel, mx, my, mz);
 	roll  = filter.getRoll();
 	pitch = filter.getPitch();
 	yaw   = filter.getYaw();
@@ -100,6 +107,16 @@ void compute_orientation::processInputs(void)
 	yawGyro = mpuRaw.angular_velocity.z/131.0;
 	yawAccel = mpuRaw.linear_acceleration.z;
 	
+	mx = compassData.magnetic_field.x;
+	my = compassData.magnetic_field.y;
+	mz = compassData.magnetic_field.z;
+}
+
+void compute_orientation::mpuCompassCallback(const sensor_msgs::MagneticField &message)
+{
+	compassData.magnetic_field.x = message.magnetic_field.x;
+	compassData.magnetic_field.y = message.magnetic_field.y;
+	compassData.magnetic_field.z = message.magnetic_field.z;	
 }
 
 void compute_orientation::mpuCallback(const sensor_msgs::Imu &message)
