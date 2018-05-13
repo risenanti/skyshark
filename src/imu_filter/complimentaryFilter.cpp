@@ -55,21 +55,47 @@ int main(int argc, char **argv)
 	complimentaryFilter filter;
 	
 	ros::NodeHandle n;
-	ros::Rate loop_rate(500); /*500 HZ*/
+	ros::Rate loop_rate(100); /*200 HZ*/
 	ros::Subscriber nSub = n.subscribe("mpuRaw", 1000, &complimentaryFilter::mpuCallback, &filter);
 	
 	ros::NodeHandle z;
 	ros::Publisher frameAngleOut = z.advertise<skyshark_msgs::frameAngle>("frame_angle",1000);
 	skyshark_msgs::frameAngle angle;
+	int i = 0;
+	float rollNormal = 0;
+	float pitchNormal = 0;
+	float yawNormal = 0;
 	
 	while(1)
 	{
 		ros::spinOnce();
 		filter.degSecCompute();
 		
-		angle.rollAngle = filter.getRoll();
-		angle.pitchAngle = filter.getPitch();
-		angle.yawAngle = filter.getYaw();
+		if (i < 50){
+			if(filter.getRoll() > 0){
+				rollNormal = -filter.getRoll();
+			}
+			else{
+				rollNormal=filter.getRoll();
+			}
+			if(filter.getPitch() > 0){
+				pitchNormal= -filter.getPitch();
+			}
+			else{
+				pitchNormal = filter.getPitch();
+			}
+			if(filter.getYaw() > 0){
+				yawNormal = filter.getYaw();
+			}
+			else{
+				yawNormal = filter.getYaw();
+			}
+			++i;
+		}
+
+		angle.rollAngle = filter.getRoll()+rollNormal;
+		angle.pitchAngle = filter.getPitch()+pitchNormal;
+		angle.yawAngle = filter.getYaw()+yawNormal;
 		
 		frameAngleOut.publish(angle);
 			

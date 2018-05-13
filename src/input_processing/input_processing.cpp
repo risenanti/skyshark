@@ -57,7 +57,7 @@ int main(int argc, char **argv) {
 	// ROS stuff
 	ros::init(argc, argv, "input_processing_node");
 	ros::NodeHandle n, s;
-	ros::Rate loop_rate(500);
+	ros::Rate loop_rate(100);
 	
 	ros::Subscriber sub  = n.subscribe("velocityTarget", 1000, rcCallback);
 	

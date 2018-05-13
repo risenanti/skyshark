@@ -2,7 +2,7 @@
 /*Keith Conley 2017*/
 #include "pid.h"
 
-#define timeChange 0.002 
+#define timeChange 0.01 
 
 double PID::getPID(double error)
 {

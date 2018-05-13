@@ -20,16 +20,16 @@
 stabClass::stabClass()
 {	
 	/*SETUP PIDS*/
-	pitchRate.SetTunings(0.007, 0.01, 0.00);
+	pitchRate.SetTunings(0.001, 0.00, 0.00);
 	pitchRate.setImax(1.00);
 	
-	rollRate.SetTunings(0.007, 0.01, 0.00);
+	rollRate.SetTunings(0.001, 0.00, 0.00);
 	rollRate.setImax(1);
 	
-	yawRate.SetTunings(0.027, 0.01, 0.00);
+	yawRate.SetTunings(0.001, 0.01, 0.00);
 	yawRate.setImax(1.00);
 	
-	yawStab.SetTunings(0.010, 0.00, 0.00);
+	yawStab.SetTunings(0.001, 0.00, 0.00);
 	
 	yaw_target = 0;
 }
